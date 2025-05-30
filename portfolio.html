@@ -3,8 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Portfolio</title>
+  <title>Lalith Aditya | Projects</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: #080808;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .sub-title {
+      font-size: 36px;
+      text-align: center;
+      color: #f5560c;
+      margin-bottom: 30px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 20px;
+      transition: 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .project-card h3 {
+      color: #ff9800;
+    }
+
+    .project-card p {
+      font-size: 15px;
+      color: #ccc;
+    }
+
+    .resume-btn {
+      background: #f5560c;
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      display: inline-block;
+      margin-top: 30px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .resume-btn:hover {
+      background: #d94700;
+    }
+  </style>
 </head>
 <body>
   <div id="header">
@@ -14,7 +86,7 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="portfolio.html">Projects</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="SignIn.html">Sign In</a></li>
           <li><a href="SignUp.html">Sign Up</a></li>
@@ -24,16 +96,16 @@
   </div>
 
   <div class="container">
-    <h2 class="sub-title">Experience & Projects</h2>
+    <h2 class="sub-title">Projects & Experience</h2>
     <div class="projects">
       <div class="project-card">
-        <img src="images/project-videographer.jpg" alt="Athletic Videographer" />
+        <img src="images/project-videographer.jpg" alt="Athletic Videographer">
         <h3>🎥 Athletic Videographer</h3>
         <p>Recorded football games and practices. Trimmed and managed footage for coaches.</p>
       </div>
 
       <div class="project-card">
-        <img src="images/project-barterdb.jpg" alt="BarterDB" />
+        <img src="images/project-barterdb.jpg" alt="BarterDB">
         <h3>🔁 BarterDB Website</h3>
         <p>Item posting, trade offers, and admin dashboard.<br>
           <a href="https://nikki44k.github.io/BarterDB/" target="_blank">Visit Site</a>
@@ -41,7 +113,7 @@
       </div>
 
       <div class="project-card">
-        <img src="images/project-escape.jpg" alt="Escape Room Game" />
+        <img src="images/project-escape.png" alt="Escape Room Game">
         <h3>🎮 Unity Escape Room Game</h3>
         <p>Android escape room game built in Unity.<br>
           <a href="https://github.com/skgtheking/383--404" target="_blank">GitHub</a>
@@ -49,7 +121,7 @@
       </div>
 
       <div class="project-card">
-        <img src="images/project-weather.jpg" alt="Weather App" />
+        <img src="images/project-weather.png" alt="Weather App">
         <h3>🌦️ Full Stack Weather App</h3>
         <p>
           Location-based forecast, YouTube & Maps integration, MongoDB CRUD.<br>
@@ -58,7 +130,7 @@
       </div>
 
       <div class="project-card">
-        <img src="images/project-adversarial.jpg" alt="Adversarial Robustness" />
+        <img src="images/project-adversarial.png" alt="Adversarial Robustness">
         <h3>🧠 Adversarial Robustness</h3>
         <p>
           Evaluated model robustness using FGSM, PGD, ZOO, Feature Squeezing.<br>
@@ -67,12 +139,33 @@
       </div>
 
       <div class="project-card">
-        <img src="images/project-accident.jpg" alt="Accident Detection" />
+        <img src="images/project-accident.png" alt="Accident Detection">
         <h3>🚨 AI-Based Accident Detection</h3>
         <p>
           Real-time accident alert system using OpenCV and sensors.<br>
           <a href="https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System" target="_blank">View GitHub</a>
         </p>
+      </div>
+    </div>
+
+    <h2 class="sub-title">Certifications</h2>
+    <div class="projects">
+      <div class="project-card">
+        <h3>✅ Network Ethical Hacking for Beginners (Kali - Hands-on)</h3>
+        <p>Udemy, May 2024 — 3.5 hours hands-on Kali Linux practical course.<br>
+          <em>Instructor: Hamza Sheikh</em></p>
+      </div>
+
+      <div class="project-card">
+        <h3>✅ Introduction to Cybersecurity</h3>
+        <p>Cisco, Jan 2024 — Basics of digital safety, cyber hygiene, and online threats.<br>
+          <a href="https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile" target="_blank">Show Credential</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>✅ Python Essentials 1</h3>
+        <p>Cisco, Jan 2024 — Foundations of Python programming.<br>
+          <a href="https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile" target="_blank">Show Credential</a></p>
       </div>
     </div>
 
