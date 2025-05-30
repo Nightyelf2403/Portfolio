@@ -1,65 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .project-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+    .project-card h3 {
+      color: #ff9800;
+    }
+    .project-card p {
+      color: #ddd;
+      font-size: 15px;
+    }
+    .project-card a {
+      color: #00e5ff;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body><div id="header" style="    width: 100%;    height: 43px;    background-image: none;    background-size: cover;
-    background-position: center;">
+<body>
+  <div id="header" style="width: 100%; height: 80px; background-image: none;">
     <div class="container">
-        <nav>
-            <img src="images/aditya.png" class="logo">
-            <ul>
-                
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="SignIn.html" target="_self">Sign In</a></li>
-                <li><a href="SignUp.html">Sign Up</a></li>
-
-            </ul>
-        </nav>
+      <nav>
+        <img src="images/aditya.png" class="logo" />
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="SignIn.html">Sign In</a></li>
+          <li><a href="SignUp.html">Sign Up</a></li>
+        </ul>
+      </nav>
     </div>
-</div>
-    <!-- Your content goes here -->
-            <div class="container">
-            <h2 class="sub-title" align="center">Experience</h2> 
-        </div>
+  </div>
+
+  <div class="container">
+    <h2 class="sub-title" align="center">Experience & Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>🎥 Athletic Videographer</h3>
+        <p>Recorded football game/practice film. Supported coaches by trimming and organizing footage.</p>
+      </div>
+
+      <div class="project-card">
+        <h3>🔁 BarterDB Website Development</h3>
+        <p>Developed item posting, trade offers, and admin dashboard.<br><a href="https://nikki44k.github.io/BarterDB/" target="_blank">Visit Site</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>🎮 Unity Escape Room Game</h3>
+        <p>Designed Unity-based escape room Android game with QR-based installation.<br><a href="https://github.com/skgtheking/383--404" target="_blank">View on GitHub</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>🌦️ Full Stack Weather App</h3>
+        <p>Responsive app with location-based forecast, CRUD (MongoDB), YouTube + Maps integration.<br><strong>Stack:</strong> Node.js, JS, CSS, MongoDB</p>
+      </div>
+
+      <div class="project-card">
+        <h3>🧠 Adversarial Robustness Analyzer</h3>
+        <p>AML final project testing models against FGSM, PGD, ZOO, and more. Uses Feature Squeezing for defense.<br><strong>Tools:</strong> PyTorch, Cleverhans, Jupyter</p>
+      </div>
+
+      <div class="project-card">
+        <h3>🚨 AI-Based Accident Detection</h3>
+        <p>Detects road accidents using ML + OpenCV. Sends alerts via Twilio API.<br><strong>Tech:</strong> Python, OpenCV, Raspberry Pi (optional)</p>
+      </div>
     </div>
-    <div class="work-list">
-        <div class="work">
-            <image src="images/work-1.png">
-                <div class="layer">
-                    <h3>Athletic Videographer</h3>
-                    <p>Records all game and practice film for Vandal football.
-                        Help my supervisor in Trimming and attaching them to coaches.</p>
-                </div>
-        </div>
-
-        <div class="work">
-            <image src="images/work-2.png">
-                <div class="layer">
-                    <h3>BarterDB Website Development</h3>
-                    <p>Itemposting, trade offers, and admin dashboards for managing transactions and useraccounts.<p>
-                        Webpage: https://nikki44k.github.io/BarterDB/ </p>
-                </div>
-        </div>
-        <div class="work">
-            <image src="images/work-3.png">
-                <div class="layer">
-                    <h3>Graphic Designer</h3>
-                    <p>Designed an Escape room Game in Unity.
-                        Make sure to run it in Android as an app by scanning a QR Code.<p>
-                        Github: https://github.com/skgtheking/383--404 </p>
-                </div>
-        </div>
-    </div>
-
-        
-
-    
+  </div>
 </body>
 </html>
