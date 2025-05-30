@@ -6,6 +6,71 @@
   <title>About - Lalith Aditya</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    :root {
+      --bg-color: #080808;
+      --text-color: #ffffff;
+      --accent-color: #f5560c;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      background-color: #111;
+      padding: 0 10%;
+      position: relative;
+    }
+
+    .logo {
+      height: 60px;
+      background: transparent;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+    }
+
     .about-section {
       display: flex;
       flex-wrap: wrap;
@@ -57,6 +122,37 @@
     }
 
     @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 100;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: left;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
+      }
+
       .about-section {
         flex-direction: column;
         align-items: center;
@@ -69,24 +165,26 @@
   </style>
 </head>
 <body>
-  <div id="header">
-    <div class="container">
-      <nav style="display: flex; align-items: center; justify-content: space-between; height: 70px; background-color: #111; padding: 0 10%;">
-  <img src="images/aditya.png" alt="Aditya Logo"
-    style="height: 60px; background: transparent; border-radius: 6px; transition: transform 0.3s ease;"
-    onmouseover="this.style.transform='scale(1.05)'"
-    onmouseout="this.style.transform='scale(1)'">
-  <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-    <li><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
-    <li><a href="about.html" style="color: #fff; text-decoration: none;">About</a></li>
-    <li><a href="portfolio.html" style="color: #fff; text-decoration: none;">Projects</a></li>
-    <li><a href="contact.html" style="color: #fff; text-decoration: none;">Contact</a></li>
-    <li><a href="SignIn.html" style="color: #fff; text-decoration: none;">Sign In</a></li>
-    <li><a href="SignUp.html" style="color: #fff; text-decoration: none;">Sign Up</a></li>
-  </ul>
-</nav>
 
-    </div>
+  <div class="container">
+    <nav>
+      <img src="images/aditya.png" alt="Aditya Logo" class="logo" />
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="SignIn.html">Sign In</a></li>
+        <li><a href="SignUp.html">Sign Up</a></li>
+      </ul>
+    </nav>
   </div>
 
   <div class="container">
@@ -97,20 +195,33 @@
       </div>
       <div class="about-content">
         <h2>Introduction</h2>
-        <p>I’m Lalith Aditya Chunduri, a passionate CS student exploring AI, ML, and full-stack development.</p>
+        <p>I’m Lalith Aditya Chunduri, a passionate CS student exploring AI, ML, and full-stack development. I enjoy building smart, scalable systems that address real-world challenges and improve user experiences.</p>
 
         <h2>Academic Journey</h2>
-        <p>I enjoy merging design and development, from responsive web apps to analyzing datasets using machine learning.</p>
+        <p>I’ve developed responsive web applications and analytical tools using HTML, CSS, JavaScript, Python, and SQL. My coursework and personal projects reflect my passion for combining creative interfaces with logical data processing. I've actively participated in group assignments and hackathons, improving my collaboration and time management skills.</p>
 
         <h2>Involvement & Impact</h2>
-        <p>Worked with TensorFlow, Keras, and Python to build ML models and deploy smart systems for real-world impact.</p>
+        <p>From working on adversarial machine learning attacks to real-time AI detection systems, I’ve applied concepts from TensorFlow, OpenCV, and MongoDB to create impactful solutions. I've also contributed to web platforms and collaborative team projects. I strive to contribute meaningfully to open-source communities and build applications that solve genuine problems.</p>
+
+        <h2>Certifications & Continuous Learning</h2>
+        <p>I'm certified in Cisco’s Introduction to Cybersecurity and Python Essentials, and have completed ethical hacking courses on Kali Linux. I regularly update my skill set through online learning, courses on Coursera and Udemy, and real-world application of new technologies. I'm particularly enthusiastic about staying at the forefront of AI advancements.</p>
+
+        <h2>Technical Strengths & Personal Values</h2>
+        <p>My strengths lie in full-stack web development, Python programming, and applied AI/ML solutions. I'm meticulous with my code, strive for clarity and reusability, and always aim for scalable design. Personally, I value consistency, creative expression, and a problem-solving mindset. I’m also driven by curiosity and the desire to continuously learn.</p>
 
         <h2>Future Aspirations</h2>
-        <p>I aim to design systems that empower users and businesses through data, intelligence, and human-centered design.</p>
+        <p>I aim to become a full-stack AI developer, building user-first applications with robust backend intelligence. My goal is to bridge design and logic to deliver elegant, intuitive solutions that create value. Eventually, I hope to work on global products, lead teams, and contribute to research in ethical AI and digital accessibility.</p>
 
         <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
       </div>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
