@@ -2,10 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact - Lalith Aditya</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    :root {
+      --bg-color: #080808;
+      --text-color: #ffffff;
+      --accent-color: #f5560c;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      background-color: #111;
+      padding: 0 10%;
+      position: relative;
+    }
+
+    .logo {
+      height: 60px;
+      background: transparent;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+    }
+
     .contact-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -89,6 +154,37 @@
     }
 
     @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 100;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: left;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
+      }
+
       .contact-wrapper {
         flex-direction: column;
       }
@@ -100,24 +196,25 @@
   </style>
 </head>
 <body>
-  <div id="header">
-    <div class="container">
-      <nav style="display: flex; align-items: center; justify-content: space-between; height: 70px; background-color: #111; padding: 0 10%;">
-  <img src="images/aditya.png" alt="Aditya Logo"
-    style="height: 60px; background: transparent; border-radius: 6px; transition: transform 0.3s ease;"
-    onmouseover="this.style.transform='scale(1.05)'"
-    onmouseout="this.style.transform='scale(1)'">
-  <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-    <li><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
-    <li><a href="about.html" style="color: #fff; text-decoration: none;">About</a></li>
-    <li><a href="portfolio.html" style="color: #fff; text-decoration: none;">Projects</a></li>
-    <li><a href="contact.html" style="color: #fff; text-decoration: none;">Contact</a></li>
-    <li><a href="SignIn.html" style="color: #fff; text-decoration: none;">Sign In</a></li>
-    <li><a href="SignUp.html" style="color: #fff; text-decoration: none;">Sign Up</a></li>
-  </ul>
-</nav>
+  <div class="container">
+    <nav>
+      <img src="images/aditya.png" alt="Aditya Logo" class="logo" />
 
-    </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="SignIn.html">Sign In</a></li>
+        <li><a href="SignUp.html">Sign Up</a></li>
+      </ul>
+    </nav>
   </div>
 
   <div class="container">
@@ -126,7 +223,6 @@
         <h2>Contact Me</h2>
         <p>I'm happy to hear from you! Whether it's a project, question, or opportunity, feel free to reach out.</p>
         <p><b>Name:</b> Lalith Aditya Chunduri</p>
-        
       </div>
 
       <form class="contact-form" action="/action_page.php" method="POST">
@@ -160,5 +256,12 @@
       </form>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
