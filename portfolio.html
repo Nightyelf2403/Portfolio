@@ -50,13 +50,42 @@
         margin: 5vh auto;
         padding: 15px;
       }
+      .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 100;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links li {
+        width: 100%;
+        text-align: left;
+      }
+      .nav-links li a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="header" style="width: 100%; height: 70px; background-color: #111; display: flex; align-items: center; justify-content: space-between; padding: 0 10%;">
+  <div id="header" style="width: 100%; height: 70px; background-color: #111; display: flex; align-items: center; justify-content: space-between; padding: 0 10%; position: relative;">
     <img src="images/aditya.png" alt="Logo" style="height: 50px;">
-    <div class="hamburger" onclick="toggleMenu()" style="display: none; flex-direction: column; cursor: pointer; gap: 4px;">
+    <div class="hamburger" onclick="toggleMenu()">
       <div style="width: 25px; height: 3px; background-color: #fff;"></div>
       <div style="width: 25px; height: 3px; background-color: #fff;"></div>
       <div style="width: 25px; height: 3px; background-color: #fff;"></div>
@@ -70,6 +99,7 @@
       <li><a href="SignUp.html" style="color: #fff; text-decoration: none;">Sign Up</a></li>
     </ul>
   </div>
+
   <div class="container">
     <h2 class="sub-title">Projects & Experience</h2>
     <div class="projects" id="projectsGrid"></div>
@@ -79,6 +109,7 @@
       <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
     </center>
   </div>
+
   <div id="projectModal" class="modal" onclick="outsideModalClick(event)">
     <div class="modal-content" data-aos="zoom-in" onclick="event.stopPropagation()">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -95,6 +126,7 @@
       </div>
     </div>
   </div>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
   <script>
@@ -173,6 +205,12 @@
     });
 
     window.onload = renderCards;
+  </script>
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("active");
+    }
   </script>
 </body>
 </html>
