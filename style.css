@@ -10,6 +10,7 @@ body {
   background: #080808;
   color: #fff;
   line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 .container {
@@ -75,6 +76,7 @@ nav ul li a:hover::after {
   font-size: 28px;
   text-align: center;
   padding: 0 10px;
+  animation: fadeInDown 1s ease-in-out;
 }
 
 .header-text h1 {
@@ -116,6 +118,7 @@ nav ul li a:hover::after {
   width: 100%;
   border-radius: 15px;
   margin-bottom: 20px;
+  animation: fadeInLeft 1s ease-in-out;
 }
 
 .sub-title {
@@ -124,6 +127,7 @@ nav ul li a:hover::after {
   color: #fff;
   text-align: center;
   margin-bottom: 30px;
+  animation: fadeInUp 1s ease-in-out;
 }
 
 /* Portfolio Grid */
@@ -142,6 +146,14 @@ nav ul li a:hover::after {
   border-radius: 15px;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.project-card img,
+.work img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .project-card:hover,
@@ -167,6 +179,56 @@ nav ul li a:hover::after {
 .work a {
   color: #00e5ff;
   text-decoration: none;
+}
+
+.resume-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #f5560c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.resume-btn:hover {
+  background: #d94700;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
