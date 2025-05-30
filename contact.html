@@ -1,116 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
-<style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - Lalith Aditya</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 40px;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    .contact-info {
+      flex: 1 1 300px;
+      color: #ddd;
+    }
 
-/* Style inputs */
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+    .contact-info h2 {
+      font-size: 32px;
+      color: #ff9800;
+    }
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-}
+    .contact-info p {
+      margin-top: 10px;
+      font-size: 16px;
+    }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+    .contact-form {
+      flex: 1 1 400px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #000;
+    }
 
-/* Style the container/contact section */
-.container {
-  border-radius: 5px;
- 
-  padding: 10px;
-}
+    .form-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
 
-/* Create two columns that float next to eachother */
-.column {
-  float: left;
-  width: 50%;
-  margin-top: 6px;
-  padding: 20px;
-}
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: transparent;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+    }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+    .form-group label {
+      position: absolute;
+      top: -10px;
+      left: 15px;
+      background: #080808;
+      color: #aaa;
+      padding: 0 5px;
+      font-size: 14px;
+    }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-</style>
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      width: 100%;
+      background: #f5560c;
+      border: none;
+      color: white;
+      font-size: 16px;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #d94700;
+    }
+
+    @media (max-width: 768px) {
+      .contact-wrapper {
+        flex-direction: column;
+      }
+
+      .contact-info {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="header" style="    width: 100%;    height: 100px;    background-image: none;    background-size: cover;
-  background-position: center;">
-  <div class="container">
+  <div id="header">
+    <div class="container">
       <nav>
-          <img src="images/aditya.png" class="logo">
-          <ul>
-              
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="portfolio.html">Portfolio</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="SignIn.html" target="_self">Sign In</a></li>
-              <li><a href="SignUp.html">Sign Up</a></li>
-
-          </ul>
-      </nav></div></div>
-  
-<div class="container">
-  <div style="text-align:center">
-    <h2>Contact Me</h2>
-    <h3 align="center"> Lalith Aditya Chunduri-2088749057 </h3>
-    <p>For any querrys leave me a message:</p>
-  </div>
-  <div class="row">
-        <div style="text-align:center">    
+        <img src="images/aditya.png" class="logo" />
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="SignIn.html">Sign In</a></li>
+          <li><a href="SignUp.html">Sign Up</a></li>
+        </ul>
+      </nav>
     </div>
-      <form action="/action_page.php">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-        <label for="country">Country</label>
-        <select id="country" name="country">
-          <option value="usa">USA</option>
-          <option value="india">INDIA</option>
-          <option value="australia">Australia</option>
-          <option value="canada">Canada</option>
-        </select>
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-        <input type="submit" value="Submit">
+  </div>
+
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h2>Contact Me</h2>
+        <p>I'm happy to hear from you! Whether it's a project, question, or opportunity, feel free to reach out.</p>
+        <p><b>Name:</b> Lalith Aditya Chunduri</p>
+        <p><b>Student ID:</b> 2088749057</p>
+      </div>
+
+      <form class="contact-form" action="/action_page.php" method="POST">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="firstname" required />
+        </div>
+
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lastname" required />
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="">Select country</option>
+            <option value="usa">USA</option>
+            <option value="india">India</option>
+            <option value="australia">Australia</option>
+            <option value="canada">Canada</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Message</label>
+          <textarea id="subject" name="subject" required></textarea>
+        </div>
+
+        <button type="submit">Send Message</button>
       </form>
     </div>
   </div>
-</div>
-
 </body>
 </html>
