@@ -84,7 +84,7 @@
       <img id="modalImage" src="" alt="Project Image" style="max-width: 100%; height: auto; max-height: 300px; display: block; margin-bottom: 20px;">
       <h2 id="modalTitle"></h2>
       <p id="modalDesc"></p>
-      <a id="modalLink" href="#" target="_blank" style="color: #00e5ff; display: flex; align-items: center; gap: 8px;">
+      <a id="modalLink" href="#" target="_blank" style="color: #00e5ff; display: none; align-items: center; gap: 8px;">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20">
   View on GitHub
 </a>
@@ -104,14 +104,14 @@
     const modalDesc = document.getElementById("modalDesc");
     const modalLink = document.getElementById("modalLink");
 
-    const allCards = [
+    $1  { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Recorded and edited football game/practice footage for coaches.', link: '#' },
   { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Forecast app with YouTube & Maps integration. CRUD with MongoDB.', link: 'https://github.com/Nightyelf2403/wa' },
   { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'Evaluated model robustness using FGSM, PGD, ZOO, Feature Squeezing.', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
   { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'Real-time alert system using OpenCV and sensors.', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
   { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'A Unity-based Android escape game. Playable via QR code scan.', link: 'https://github.com/skgtheking/383--404' },
-  { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Recorded and edited football game/practice footage for coaches.' },
+  
   { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'Web app to post items and trade offers with admin dashboard.', link: 'https://nikki44k.github.io/BarterDB/' },
-  { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Udemy, May 2024 — Instructor: Hamza Sheikh. Kali Linux.' },
+  { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Udemy, May 2024 — Instructor: Hamza Sheikh. Kali Linux.', link: '#' },
   { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Introduction to Cybersecurity', desc: 'Cisco, Jan 2024 — Basics of digital safety, cyber hygiene.', link: 'https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile' },
   { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: 'Cisco, Jan 2024 — Foundations of Python programming.', link: 'https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile' }
 ];
@@ -129,7 +129,7 @@
 
       const certCards = allCards.slice(6).map((c, i) => `
         <div class='project-card' onclick='openModal(${i + 6})'>
-          <img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>
+          <img src='${c.img}' onerror="this.style.display='none'"><h3>${c.title}</h3><p>Click to view more...</p>
         </div>`).join('');
 
       projectsGrid.innerHTML = projectCards;
@@ -143,6 +143,7 @@
       modalTitle.innerText = card.title;
       modalDesc.innerText = card.desc;
       modalLink.href = card.link;
+      modalLink.style.display = card.link === '#' ? 'none' : 'flex';
       modal.style.display = "block";
       document.body.classList.add("modal-open");
     }
