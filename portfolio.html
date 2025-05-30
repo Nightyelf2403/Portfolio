@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lalith Aditya | Projects</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     body {
       background: #080808;
@@ -13,54 +14,73 @@
       margin: 0;
       padding: 0;
     }
-
     .container {
       width: 90%;
       max-width: 1200px;
       margin: auto;
       padding: 60px 20px;
     }
-
     .sub-title {
       font-size: 36px;
       text-align: center;
       color: #f5560c;
+      margin: 60px 0 30px;
+    }
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
       margin-bottom: 30px;
     }
-
+    .tab-buttons button {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .tab-buttons button.active {
+      background: #f5560c;
+    }
+    .tab-content {
+      display: none;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .tab-content.active {
+      display: block;
+    }
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      gap: 40px;
     }
-
     .project-card {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 10px;
       padding: 20px;
       transition: 0.3s ease;
     }
-
     .project-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
-
     .project-card img {
       width: 100%;
       border-radius: 10px;
       margin-bottom: 15px;
     }
-
     .project-card h3 {
       color: #ff9800;
     }
-
     .project-card p {
       font-size: 15px;
       color: #ccc;
     }
-
     .resume-btn {
       background: #f5560c;
       color: white;
@@ -72,7 +92,6 @@
       font-weight: bold;
       transition: background 0.3s;
     }
-
     .resume-btn:hover {
       background: #d94700;
     }
@@ -94,84 +113,76 @@
       </nav>
     </div>
   </div>
-
   <div class="container">
-    <h2 class="sub-title">Projects & Experience</h2>
-    <div class="projects">
-      <div class="project-card">
-        <img src="images/project-videographer.jpg" alt="Athletic Videographer">
-        <h3>🎥 Athletic Videographer</h3>
-        <p>Recorded football games and practices. Trimmed and managed footage for coaches.</p>
-      </div>
-
-      <div class="project-card">
-        <img src="images/project-barterdb.jpg" alt="BarterDB">
-        <h3>🔁 BarterDB Website</h3>
-        <p>Item posting, trade offers, and admin dashboard.<br>
-          <a href="https://nikki44k.github.io/BarterDB/" target="_blank">Visit Site</a>
-        </p>
-      </div>
-
-      <div class="project-card">
-        <img src="images/project-escape.png" alt="Escape Room Game">
-        <h3>🎮 Unity Escape Room Game</h3>
-        <p>Android escape room game built in Unity.<br>
-          <a href="https://github.com/skgtheking/383--404" target="_blank">GitHub</a>
-        </p>
-      </div>
-
-      <div class="project-card">
-        <img src="images/project-weather.png" alt="Weather App">
-        <h3>🌦️ Full Stack Weather App</h3>
-        <p>
-          Location-based forecast, YouTube & Maps integration, MongoDB CRUD.<br>
-          <a href="https://github.com/Nightyelf2403/wa" target="_blank">View GitHub</a>
-        </p>
-      </div>
-
-      <div class="project-card">
-        <img src="images/project-adversarial.png" alt="Adversarial Robustness">
-        <h3>🧠 Adversarial Robustness</h3>
-        <p>
-          Evaluated model robustness using FGSM, PGD, ZOO, Feature Squeezing.<br>
-          <a href="https://github.com/Nightyelf2403/adv-robustness-img" target="_blank">View GitHub</a>
-        </p>
-      </div>
-
-      <div class="project-card">
-        <img src="images/project-accident.png" alt="Accident Detection">
-        <h3>🚨 AI-Based Accident Detection</h3>
-        <p>
-          Real-time accident alert system using OpenCV and sensors.<br>
-          <a href="https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System" target="_blank">View GitHub</a>
-        </p>
+    <div class="tab-buttons">
+      <button class="active" onclick="switchTab('projects')">Projects</button>
+      <button onclick="switchTab('certifications')">Certifications</button>
+    </div>
+    <div id="projects" class="tab-content active" data-aos="fade-up">
+      <h2 class="sub-title">Projects & Experience</h2>
+      <div class="projects">
+        <div class="project-card">
+          <img src="images/project-videographer.jpg" alt="Athletic Videographer">
+          <h3>🎥 Athletic Videographer</h3>
+          <p>Recorded football games and practices. Trimmed and managed footage for coaches.</p>
+        </div>
+        <div class="project-card">
+          <img src="images/project-barterdb.jpg" alt="BarterDB">
+          <h3>🔁 BarterDB Website</h3>
+          <p>Item posting, trade offers, and admin dashboard.<br><a href="https://nikki44k.github.io/BarterDB/" target="_blank">Visit Site</a></p>
+        </div>
+        <div class="project-card">
+          <img src="images/project-escape.png" alt="Escape Room Game">
+          <h3>🎮 Unity Escape Room Game</h3>
+          <p>Android escape room game built in Unity.<br><a href="https://github.com/skgtheking/383--404" target="_blank">GitHub</a></p>
+        </div>
+        <div class="project-card">
+          <img src="images/project-weather.png" alt="Weather App">
+          <h3>🌦️ Full Stack Weather App</h3>
+          <p>Location-based forecast, YouTube & Maps integration, MongoDB CRUD.<br><a href="https://github.com/Nightyelf2403/wa" target="_blank">View GitHub</a></p>
+        </div>
+        <div class="project-card">
+          <img src="images/project-adversarial.png" alt="Adversarial Robustness">
+          <h3>🧠 Adversarial Robustness</h3>
+          <p>Evaluated model robustness using FGSM, PGD, ZOO, Feature Squeezing.<br><a href="https://github.com/Nightyelf2403/adv-robustness-img" target="_blank">View GitHub</a></p>
+        </div>
+        <div class="project-card">
+          <img src="images/project-accident.png" alt="Accident Detection">
+          <h3>🚨 AI-Based Accident Detection</h3>
+          <p>Real-time accident alert system using OpenCV and sensors.<br><a href="https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System" target="_blank">View GitHub</a></p>
+        </div>
       </div>
     </div>
-
-    <h2 class="sub-title">Certifications</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>✅ Network Ethical Hacking for Beginners (Kali - Hands-on)</h3>
-        <p>Udemy, May 2024 — 3.5 hours hands-on Kali Linux practical course.<br>
-          <em>Instructor: Hamza Sheikh</em></p>
-      </div>
-
-      <div class="project-card">
-        <h3>✅ Introduction to Cybersecurity</h3>
-        <p>Cisco, Jan 2024 — Basics of digital safety, cyber hygiene, and online threats.<br>
-          <a href="https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile" target="_blank">Show Credential</a></p>
-      </div>
-
-      <div class="project-card">
-        <h3>✅ Python Essentials 1</h3>
-        <p>Cisco, Jan 2024 — Foundations of Python programming.<br>
-          <a href="https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile" target="_blank">Show Credential</a></p>
+    <div id="certifications" class="tab-content" data-aos="fade-up">
+      <h2 class="sub-title">Certifications</h2>
+      <div class="projects">
+        <div class="project-card">
+          <h3>✅ Network Ethical Hacking for Beginners (Kali - Hands-on)</h3>
+          <p>Udemy, May 2024 — 3.5 hours hands-on Kali Linux practical course.<br><em>Instructor: Hamza Sheikh</em></p>
+        </div>
+        <div class="project-card">
+          <h3>✅ Introduction to Cybersecurity</h3>
+          <p>Cisco, Jan 2024 — Basics of digital safety, cyber hygiene, and online threats.<br><a href="https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile" target="_blank">Show Credential</a></p>
+        </div>
+        <div class="project-card">
+          <h3>✅ Python Essentials 1</h3>
+          <p>Cisco, Jan 2024 — Foundations of Python programming.<br><a href="https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile" target="_blank">Show Credential</a></p>
+        </div>
       </div>
     </div>
-
     <center>
       <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
     </center>
   </div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+  <script>
+    function switchTab(id) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-buttons button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
 </body>
 </html>
