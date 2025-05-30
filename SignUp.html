@@ -1,102 +1,213 @@
 <!DOCTYPE html>
-  <html>
-  <head>
-  <title>Welcome To Registration Form</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Lalith Aditya</title>
   <link rel="stylesheet" href="style.css">
-
-  <style type="text/css">
-    
-    /* body css for whole page */
-    body
-    {
-	    margin:0px;
-	    background-color:#080808;
-	    background-image:url(image/background.jpg);
-	    color:#f9fcf5;
-	    font-family:Arial, Helvetica, sans-serif;
+  <style>
+    body {
+      margin: 0;
+      background-color: #080808;
+      background-image: url('image/background.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #f9fcf5;
+      font-family: Arial, Helvetica, sans-serif;
     }
-    
-    #main{width:600px; height:auto; overflow:hidden; padding-bottom:20px; margin-left:auto; margin-right:auto; 
-    border-radius:5px; padding-left:10px; margin-top:100px; border-top:3px double #f1f1f1; 
-    border-bottom:3px double #f1f1f1; padding-top:20px;
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      background-color: #111;
+      padding: 0 10%;
+      position: relative;
     }
-    
-    #main table{font-family:"Comic Sans MS", cursive;}
-    /* css code for textbox */
-    #main .tb{height:28px; width:230px; border:1px solid #f26724; color:#fd7838; font-weight:bold; border-left:5px solid #f7f7f7; opacity:0.9;}
-    
-    #main .tb:focus{height:28px; border:1px solid #f26724; outline:none; border-left:5px solid #f7f7f7;}
 
-    /* css code for button*/
-    #main .btn{width:150px; height:32px; outline:none;  color:#f7f7f7; font-weight:bold; border:0px solid #f26724; 
-    text-shadow: 0px 0.5px 0.5px #fff; border-radius: 2px; font-weight: 600; color: #f26724; letter-spacing: 1px; 
-    font-size:14px; background-color:#f1f1f1; -webkit-transition: 1s; -moz-transition: 1s; transition: 1s;}
-  
-    #main .btn:hover{
-	background-color:#f26724; outline:none;  border-radius: 2px; color:#f1f1f1; border:1px solid #f1f1f1;
-    -webkit-transition: 1s; -moz-transition: 1s; transition: 1s; 
-	}
+    .logo {
+      height: 60px;
+      background: transparent;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
 
-    
-    </style>
+    .logo:hover {
+      transform: scale(1.05);
+    }
 
-  </head>
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
 
-	<body>
-	<!-- Main div code -->
-	<nav style="display: flex; align-items: center; justify-content: space-between; height: 70px; background-color: #111; padding: 0 10%;">
-  <img src="images/aditya.png" alt="Aditya Logo"
-    style="height: 60px; background: transparent; border-radius: 6px; transition: transform 0.3s ease;"
-    onmouseover="this.style.transform='scale(1.05)'"
-    onmouseout="this.style.transform='scale(1)'">
-  <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-    <li><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
-    <li><a href="about.html" style="color: #fff; text-decoration: none;">About</a></li>
-    <li><a href="portfolio.html" style="color: #fff; text-decoration: none;">Projects</a></li>
-    <li><a href="contact.html" style="color: #fff; text-decoration: none;">Contact</a></li>
-    <li><a href="SignIn.html" style="color: #fff; text-decoration: none;">Sign In</a></li>
-    <li><a href="SignUp.html" style="color: #fff; text-decoration: none;">Sign Up</a></li>
-  </ul>
-</nav>
-</div></div>
-	<div id="main">
-	<div class="h-tag">
-	<h2>Create Your Account</h2>
-	</div>
-	<!-- create account div -->
-	<div class="login">
-	<table cellspacing="2" align="center" cellpadding="8" border="0">
-	<tr>
-	<td align="right">Enter Name :</td>
-	<td><input type="text" placeholder="Enter user here" class="tb" /></td>
-	</tr>
-	<tr>
-	<td align="right">Enter Email ID :</td>
-	<td><input type="text" placeholder="Enter Email ID here" class="tb" /></td>
-	</tr>
-	<tr>
-	<td align="right">Enter Username :</td>
-	<td><input type="text" placeholder="Enter Username here" class="tb" /></td>
-	</tr>
-	<tr>
-	<td align="right">Enter Password :</td>
-	<td><input type="password" placeholder="Enter Password here" class="tb" /></td>
-	</tr>
-	<tr>
-	<td align="right">Enter Confirm Password :</td>
-	<td><input type="password" placeholder="Enter Password here" class="tb" /></td>
-	</tr>
-	<tr>
-	<td></td>
-	<td>
-	<input type="reset" value="Clear Form" id="res" class="btn" />
-	<input type="submit" value="Create Account" class="btn" /></td>
-	</tr>
-	</table>
-	</div>
-	<!-- create account box ending here.. -->
-	</div>
-	<!-- Main div ending here... -->
-	</body>
-	</html>
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+    }
+
+    #main {
+      width: 90%;
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 20px;
+      border-top: 3px double #f1f1f1;
+      border-bottom: 3px double #f1f1f1;
+      border-radius: 5px;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .tb {
+      height: 28px;
+      width: 100%;
+      border: 1px solid #f26724;
+      color: #fd7838;
+      font-weight: bold;
+      border-left: 5px solid #f7f7f7;
+      margin-top: 5px;
+      opacity: 0.9;
+    }
+
+    .tb:focus {
+      outline: none;
+    }
+
+    .btn {
+      width: 48%;
+      height: 32px;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #f26724;
+      background-color: #f1f1f1;
+      border: 0;
+      border-radius: 2px;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #f26724;
+      color: #f1f1f1;
+      border: 1px solid #f1f1f1;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      padding: 8px 0;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 100;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+        text-align: left;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="images/aditya.png" alt="Aditya Logo" class="logo">
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portfolio.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="SignIn.html">Sign In</a></li>
+      <li><a href="SignUp.html">Sign Up</a></li>
+    </ul>
+  </nav>
+
+  <div id="main">
+    <h2 style="text-align:center;">Create Your Account</h2>
+    <form>
+      <table>
+        <tr>
+          <td>Enter Name:</td>
+          <td><input type="text" placeholder="Enter your name" class="tb" required></td>
+        </tr>
+        <tr>
+          <td>Enter Email ID:</td>
+          <td><input type="email" placeholder="Enter your email" class="tb" required></td>
+        </tr>
+        <tr>
+          <td>Enter Username:</td>
+          <td><input type="text" placeholder="Choose a username" class="tb" required></td>
+        </tr>
+        <tr>
+          <td>Enter Password:</td>
+          <td><input type="password" placeholder="Create a password" class="tb" required></td>
+        </tr>
+        <tr>
+          <td>Confirm Password:</td>
+          <td><input type="password" placeholder="Confirm your password" class="tb" required></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align:center;">
+            <input type="reset" value="Clear Form" class="btn">
+            <input type="submit" value="Create Account" class="btn">
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>
