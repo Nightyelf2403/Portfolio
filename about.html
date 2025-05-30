@@ -5,9 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About - Lalith Aditya</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 40px;
+      padding: 60px 20px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .about-image {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      border-radius: 15px;
+    }
+
+    .about-content {
+      flex: 2 1 400px;
+      color: #ddd;
+    }
+
+    .about-content h2 {
+      color: #ff9800;
+      margin-bottom: 10px;
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .resume-btn {
+      display: inline-block;
+      background: #f5560c;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .resume-btn:hover {
+      background: #d94700;
+    }
+
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-content {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
   <div id="header">
     <div class="container">
       <nav>
@@ -24,29 +85,26 @@
     </div>
   </div>
 
-  <!-- About Section -->
-  <div id="about">
-    <div class="container">
-      <h1 class="sub-title">About Me</h1>
-      <div class="row">
-        <div class="about-col-1">
-          <img src="images/user.png" alt="Lalith Aditya Profile Picture" />
-        </div>
-        <div class="about-col-2">
-          <h2>Introduction</h2>
-          <p>I am <b>Lalith Aditya Chunduri</b>, a passionate Computer Science student with a focus on Artificial Intelligence and Machine Learning. I'm actively building systems that use data to solve real problems and improve everyday life.</p>
+  <div class="container">
+    <h1 class="sub-title">About Me</h1>
+    <div class="about-section">
+      <div class="about-image">
+        <img src="images/user.png" alt="Lalith Aditya photo" />
+      </div>
+      <div class="about-content">
+        <h2>Introduction</h2>
+        <p>I’m Lalith Aditya Chunduri, a passionate CS student exploring AI, ML, and full-stack development.</p>
 
-          <h2>Academic Journey</h2>
-          <p>My education blends design and data — from developing front-end applications to analyzing data using machine learning. I've built full-stack apps, implemented classification systems, and explored NLP and automation in real projects.</p>
+        <h2>Academic Journey</h2>
+        <p>I enjoy merging design and development, from responsive web apps to analyzing datasets using machine learning.</p>
 
-          <h2>Involvement & Impact</h2>
-          <p>I’ve used tools like TensorFlow, scikit-learn, Pandas, and Matplotlib to build predictive models and dashboards. I’ve designed apps for recommendation, NLP, and sensor-based alerts, applying AI in practical settings.</p>
+        <h2>Involvement & Impact</h2>
+        <p>Worked with TensorFlow, Keras, and Python to build ML models and deploy smart systems for real-world impact.</p>
 
-          <h2>Future Aspirations</h2>
-          <p>I aim to specialize in AI/ML to build scalable, ethical, and impactful products. I’m passionate about building intelligent tech that serves society and enhances decision-making through automation and data insights.</p>
+        <h2>Future Aspirations</h2>
+        <p>I aim to design systems that empower users and businesses through data, intelligence, and human-centered design.</p>
 
-          <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
-        </div>
+        <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
       </div>
     </div>
   </div>
