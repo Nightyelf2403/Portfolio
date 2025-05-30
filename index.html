@@ -20,7 +20,7 @@
     body {
       background: var(--bg-color);
       color: var(--text-color);
-      height: 100%;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
       margin: 0;
@@ -28,6 +28,9 @@
 
     .page-wrapper {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .hero {
@@ -97,6 +100,7 @@
       padding: 20px 10px;
       text-align: center;
       color: #ccc;
+      margin-top: auto;
     }
 
     .footer ul {
@@ -162,21 +166,21 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Sticky Footer -->
-  <footer class="footer">
-    <div class="container">
-      <nav>
-        <ul>
-          <li><a href="terms.html">Terms and Conditions</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="cookie.html">Cookie Policy</a></li>
-        </ul>
-      </nav>
-      <p>&copy; 2024 Lalith Aditya. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Sticky Footer -->
+    <footer class="footer">
+      <div class="container">
+        <nav>
+          <ul>
+            <li><a href="terms.html">Terms and Conditions</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="cookie.html">Cookie Policy</a></li>
+          </ul>
+        </nav>
+        <p>&copy; 2024 Lalith Aditya. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
 
   <script>
     function toggleTheme() {
