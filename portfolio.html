@@ -13,6 +13,7 @@
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
+      scroll-behavior: smooth;
     }
     .container {
       width: 90%;
@@ -88,6 +89,7 @@
       padding: 20px;
       max-width: 700px;
       color: white;
+      position: relative;
     }
     .modal-content img {
       width: 100%;
@@ -102,62 +104,109 @@
     }
     .close-btn {
       color: #f5560c;
-      float: right;
+      position: absolute;
+      top: 10px;
+      right: 20px;
       font-size: 28px;
       font-weight: bold;
       cursor: pointer;
+    }
+    .nav-arrows {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .nav-arrows button {
+      background: #222;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .nav-arrows button:hover {
+      background: #333;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2 class="sub-title">Projects & Experience</h2>
-    <div class="projects">
-      <div class="project-card" onclick="openModal('images/project-weather.png', 'Full Stack Weather App', 'Location-based forecast app with YouTube & Maps integration. MongoDB CRUD enabled.', 'https://github.com/Nightyelf2403/wa')">
-        <img src="images/project-weather.png" alt="Weather App">
-        <h3>🌦️ Full Stack Weather App</h3>
-        <p>Click to view more...</p>
-      </div>
-      <div class="project-card" onclick="openModal('images/project-adversarial.png', 'Adversarial Robustness', 'Evaluated model robustness using FGSM, PGD, ZOO, Feature Squeezing.', 'https://github.com/Nightyelf2403/adv-robustness-img')">
-        <img src="images/project-adversarial.png" alt="Adversarial Robustness">
-        <h3>🧠 Adversarial Robustness</h3>
-        <p>Click to view more...</p>
-      </div>
-      <div class="project-card" onclick="openModal('images/project-accident.png', 'AI-Based Accident Detection', 'Real-time accident alert system using OpenCV and sensors.', 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System')">
-        <img src="images/project-accident.png" alt="Accident Detection">
-        <h3>🚨 AI-Based Accident Detection</h3>
-        <p>Click to view more...</p>
-      </div>
+    <div class="projects" id="projectsGrid">
+      <!-- project cards inserted here -->
+    </div>
+    <h2 class="sub-title">Certifications</h2>
+    <div class="projects" id="certificationsGrid">
+      <!-- certification cards inserted here -->
     </div>
     <center>
       <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
     </center>
   </div>
 
-  <!-- Modal Popup -->
   <div id="projectModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" data-aos="zoom-in">
       <span class="close-btn" onclick="closeModal()">&times;</span>
       <img id="modalImage" src="" alt="Project Image">
       <h2 id="modalTitle"></h2>
       <p id="modalDesc"></p>
       <a id="modalLink" href="#" target="_blank" style="color: #00e5ff;">View Project</a>
+      <div class="nav-arrows">
+        <button onclick="navigateModal(-1)">← Prev</button>
+        <button onclick="navigateModal(1)">Next →</button>
+      </div>
     </div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
   <script>
-    function openModal(img, title, desc, link) {
-      document.getElementById("modalImage").src = img;
-      document.getElementById("modalTitle").innerText = title;
-      document.getElementById("modalDesc").innerText = desc;
-      document.getElementById("modalLink").href = link;
-      document.getElementById("projectModal").style.display = "block";
+    const modal = document.getElementById("projectModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalLink = document.getElementById("modalLink");
+
+    const allCards = [
+      {img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Forecast app with YouTube & Maps integration. CRUD with MongoDB.', link: 'https://github.com/Nightyelf2403/wa'},
+      {img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'Evaluated model robustness using FGSM, PGD, ZOO, Feature Squeezing.', link: 'https://github.com/Nightyelf2403/adv-robustness-img'},
+      {img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'Real-time alert system using OpenCV and sensors.', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System'},
+      {img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Udemy, May 2024 — Instructor: Hamza Sheikh. Kali Linux.', link: '#'},
+      {img: 'images/cert-cyber.jpg', title: 'Introduction to Cybersecurity', desc: 'Cisco, Jan 2024 — Basics of digital safety, cyber hygiene.', link: 'https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile'},
+      {img: 'images/cert-python.jpg', title: 'Python Essentials 1', desc: 'Cisco, Jan 2024 — Foundations of Python programming.', link: 'https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile'}
+    ];
+
+    let currentIndex = 0;
+
+    function renderCards() {
+      const projectsGrid = document.getElementById("projectsGrid");
+      const certsGrid = document.getElementById("certificationsGrid");
+      projectsGrid.innerHTML = allCards.slice(0, 3).map((c, i) => `<div class='project-card' onclick='openModal(${i})'><img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p></div>`).join('');
+      certsGrid.innerHTML = allCards.slice(3).map((c, i) => `<div class='project-card' onclick='openModal(${i + 3})'><img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p></div>`).join('');
     }
+
+    function openModal(index) {
+      currentIndex = index;
+      const card = allCards[index];
+      modalImage.src = card.img;
+      modalTitle.innerText = card.title;
+      modalDesc.innerText = card.desc;
+      modalLink.href = card.link;
+      modal.style.display = "block";
+    }
+
     function closeModal() {
-      document.getElementById("projectModal").style.display = "none";
+      modal.style.display = "none";
     }
+
+    function navigateModal(dir) {
+      let nextIndex = currentIndex + dir;
+      if (nextIndex < 0) nextIndex = allCards.length - 1;
+      if (nextIndex >= allCards.length) nextIndex = 0;
+      openModal(nextIndex);
+    }
+
+    window.onload = renderCards;
   </script>
 </body>
 </html>
