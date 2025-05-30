@@ -24,30 +24,53 @@
     .container {
       max-width: 1200px;
       margin: auto;
-      padding: 20px;
+      padding: 0 20px;
     }
 
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
+      height: 70px;
+      background-color: #111;
+      padding: 0 10%;
+      position: relative;
     }
 
     .logo {
       height: 60px;
+      background: transparent;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
     }
 
-    nav ul {
-      list-style: none;
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-links {
       display: flex;
+      list-style: none;
       gap: 20px;
     }
 
-    nav ul li a {
+    .nav-links li a {
       color: white;
       text-decoration: none;
       font-weight: 500;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
     }
 
     .hero-wrapper {
@@ -87,7 +110,7 @@
       border-radius: 5px;
       font-weight: bold;
       text-decoration: none;
-      transition: 0.3s;
+      transition: background 0.3s;
     }
 
     .hero-buttons a:hover {
@@ -120,33 +143,37 @@
       color: var(--accent-color);
     }
 
-    /* Mobile responsive adjustments */
+    /* Mobile view adjustments */
     @media (max-width: 768px) {
-      nav {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
         flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 10px 10%;
-      }
-
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
         width: 100%;
-        margin-top: 10px;
-        padding: 0;
-      }
-
-      nav ul li {
-        width: 100%;
-      }
-
-      nav ul li a {
-        display: block;
-        width: 100%;
-        padding: 10px;
         background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 100;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
         text-align: left;
+      }
+
+      .nav-links li a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
       }
 
       .hero h1 {
@@ -164,12 +191,16 @@
 <body>
 
   <div class="container">
-    <nav style="display: flex; align-items: center; justify-content: space-between; height: 70px; background-color: #111; padding: 0 10%;">
-      <img src="images/aditya.png" alt="Aditya Logo"
-        style="height: 60px; background: transparent; border-radius: 6px; transition: transform 0.3s ease;"
-        onmouseover="this.style.transform='scale(1.05)'"
-        onmouseout="this.style.transform='scale(1)'">
-      <ul>
+    <nav>
+      <img src="images/aditya.png" alt="Aditya Logo" class="logo" />
+      
+      <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="portfolio.html">Projects</a></li>
@@ -200,6 +231,13 @@
     </ul>
     <p>&copy; 2025 Lalith Aditya. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
