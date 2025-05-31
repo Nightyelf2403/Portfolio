@@ -27,7 +27,7 @@ Real-time detection system using OpenCV and sensors to identify accidents and tr
 🔗 [GitHub Repo](https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System)
 
 ### 🎥 Athletic Videographer  
-Filmed and edited official NCAA football practice and game footage. Traveled to cities across the U.S., collaborating with coaching teams and video analysts.
+Filmed and edited school football practice and game footage. Traveled to cities across the U.S., collaborating with coaching teams and video analysts.
 
 ### 🔄 BarterDB  
 A PHP + MySQL-based trading platform with user/admin dashboards, secure item listings, and hash-protected anonymous barter logic.  
