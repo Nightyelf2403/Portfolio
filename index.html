@@ -369,6 +369,74 @@
       }
       typeChar();
     }
+
+    const predefinedReplies = {
+      "what are your skills": "I have hands-on experience in HTML, CSS, JavaScript, PHP, React, MongoDB, Node.js, and Python. I focus on building responsive and functional web apps.",
+      "what projects have you built": "I've developed a Full Stack Weather App, Adversarial ML Evaluator, Accident Detection System, Unity Game, and a BarterDB Trading Platform.",
+      "show resume": "You can view or download my resume here: <a href='files/Lalith_Resume.pdf' target='_blank'>Resume</a>",
+      "how did you build this portfolio": "I built this using HTML, CSS, JavaScript, Cohere API for chatbot, hosted on GitHub Pages, and styled with AOS animations.",
+      "what certifications do you have": "I have certifications in Ethical Hacking (Udemy), Introduction to Cybersecurity (Cisco), and Python Essentials 1 (Cisco).",
+      "show github": "Visit my GitHub here: <a href='https://github.com/Nightyelf2403' target='_blank'>GitHub</a>",
+      "show linkedin": "Connect with me on LinkedIn: <a href='https://www.linkedin.com/in/lalith-aditya-chunduri' target='_blank'>LinkedIn</a>",
+      "show contact": "You can reach me via email at adiaditya7907@gmail.com or use the Contact form on this site."
+    };
+
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("active");
+    }
+
+    function toggleChat() {
+      const chatWindow = document.getElementById('chatWindow');
+      chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function appendMessage(sender, text) {
+      const chatBody = document.getElementById('chatBody');
+      const msgWrapper = document.createElement('div');
+      msgWrapper.classList.add('chat-msg', sender);
+
+      const avatar = document.createElement('img');
+      avatar.src = sender === 'user' ? 'images/user.png' : 'images/bot.png';
+
+      const msgText = document.createElement('span');
+      msgText.innerHTML = text;
+
+      msgWrapper.appendChild(avatar);
+      msgWrapper.appendChild(msgText);
+      chatBody.appendChild(msgWrapper);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chatMessage');
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage('user', message);
+      input.value = '';
+
+      const lower = message.toLowerCase();
+      for (const key in predefinedReplies) {
+        if (lower.includes(key)) {
+          appendMessage('bot', predefinedReplies[key]);
+          return;
+        }
+      }
+
+      fetch('https://backend-portfolio-2f58.onrender.com/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      })
+      .then(res => res.json())
+      .then(data => {
+        appendMessage('bot', data.reply);
+      })
+      .catch(() => {
+        appendMessage('bot', "Sorry, something went wrong.");
+      });
+    }
   </script>
 </body>
 </html>
