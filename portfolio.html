@@ -7,96 +7,88 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.9);
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
     }
-    .modal-content {
-      background-color: #111;
-      margin: 10vh auto;
-      padding: 20px;
+
+    .sub-title {
+      color: #ff9800;
+      font-size: 28px;
+      margin: 40px 0 20px;
+      text-align: center;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 20px 0;
+    }
+
+    .project-card {
+      background-color: #1c1c1c;
+      border: 1px solid #333;
       border-radius: 10px;
-      width: 90%;
-      max-width: 700px;
-      position: relative;
-      animation: fadeIn 0.3s ease;
+      padding: 15px;
+      text-align: center;
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+
+    .project-card img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
-    body.modal-open {
-      overflow: hidden;
+
+    .project-card h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      color: #ff9800;
     }
-    .modal-active::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.8);
-      z-index: 9998;
+
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #f5560c80;
     }
-    @media (max-width: 768px) {
-      .modal-content {
-        margin: 5vh auto;
-        padding: 15px;
-      }
-      .hamburger {
-        display: flex !important;
-        flex-direction: column;
-        cursor: pointer;
-        gap: 4px;
-      }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #111;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        padding: 10px 0;
-        z-index: 100;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .nav-links li {
-        width: 100%;
-        text-align: left;
-      }
-      .nav-links li a {
-        display: block;
-        padding: 12px 20px;
-        border-bottom: 1px solid #333;
-      }
+
+    .resume-btn {
+      display: inline-block;
+      margin: 20px auto;
+      background: #f5560c;
+      color: white;
+      padding: 10px 25px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .resume-btn:hover {
+      background: #d94700;
     }
   </style>
 </head>
 <body>
-  <div id="header" style="width: 100%; height: 70px; background-color: #111; display: flex; align-items: center; justify-content: space-between; padding: 0 10%; position: relative;">
+  <div id="header" style="width: 100%; height: 70px; background-color: #111; display: flex; align-items: center; justify-content: space-between; padding: 0 10%;">
     <img src="images/aditya.png" alt="Logo" style="height: 50px;">
     <div class="hamburger" onclick="toggleMenu()">
       <div style="width: 25px; height: 3px; background-color: #fff;"></div>
       <div style="width: 25px; height: 3px; background-color: #fff;"></div>
       <div style="width: 25px; height: 3px; background-color: #fff;"></div>
     </div>
-    <ul class="nav-links" id="navLinks" style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-      <li><a href="index.html" style="color: #fff; text-decoration: none;">Home</a></li>
-      <li><a href="about.html" style="color: #fff; text-decoration: none;">About</a></li>
-      <li><a href="portfolio.html" style="color: #fff; text-decoration: none;">Projects</a></li>
-      <li><a href="contact.html" style="color: #fff; text-decoration: none;">Contact</a></li>
-      <li><a href="SignIn.html" style="color: #fff; text-decoration: none;">Sign In</a></li>
-      <li><a href="SignUp.html" style="color: #fff; text-decoration: none;">Sign Up</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portfolio.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="SignIn.html">Sign In</a></li>
+      <li><a href="SignUp.html">Sign Up</a></li>
     </ul>
   </div>
 
@@ -110,107 +102,45 @@
     </center>
   </div>
 
-  <div id="projectModal" class="modal" onclick="outsideModalClick(event)">
-    <div class="modal-content" data-aos="zoom-in" onclick="event.stopPropagation()">
-      <span class="close-btn" onclick="closeModal()">&times;</span>
-      <img id="modalImage" src="" alt="Project Image" style="max-width: 100%; height: auto; max-height: 300px; display: block; margin-bottom: 20px;">
-      <h2 id="modalTitle"></h2>
-      <p id="modalDesc"></p>
-      <a id="modalLink" href="#" target="_blank" style="color: #00e5ff; display: none; align-items: center; gap: 8px;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20">
-        View on GitHub
-      </a>
-      <div class="nav-arrows">
-        <button onclick="navigateModal(-1)">← Prev</button>
-        <button onclick="navigateModal(1)">Next →</button>
-      </div>
-    </div>
-  </div>
-
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
   <script>
-    const modal = document.getElementById("projectModal");
-    const modalImage = document.getElementById("modalImage");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalDesc = document.getElementById("modalDesc");
-    const modalLink = document.getElementById("modalLink");
-
     const allCards = [
-      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'As an athletic videographer for the University of Idaho football program, I was responsible for filming both practice sessions and live games across various locations. This role involved traveling to different cities along with the team, capturing high-quality footage for strategic reviews, and editing game reels for coaches and analysts. I managed equipment setup, angle coverage, and ensured timely delivery of videos for performance evaluations. This experience not only refined my technical skills in videography and editing but also strengthened my time management and collaboration under high-pressure game environments.', link: '#' },
-      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Developed as part of a full-stack assessment, this weather app integrates OpenWeather API, YouTube API, and Google Maps to deliver an interactive and visually engaging user experience. I implemented features like dynamic city search with autocomplete using GeoDB API, responsive cards for weather data, and dark mode toggle. The app displays 5-day forecasts and today’s hourly updates, with real-time weather icons and dynamic YouTube travel videos for searched cities. It also supports CRUD operations via a Node.js backend with MongoDB Atlas and allows exporting weather records in JSON, CSV, and PDF formats. This project showcases my ability to combine multiple APIs, design scalable backend endpoints, and build an aesthetically polished frontend deployed via Vercel.', link: 'https://github.com/Nightyelf2403/wa' },
-      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'In this machine learning project, I analyzed the robustness of pretrained deep learning models like VGG16 and ResNet50 against various adversarial attacks including Square, EAD, Zoo. I fine-tuned models on Bean Leaf dataset and generated adversarial samples to evaluate performance drop and perturbation tolerance. I also implemented lightweight defense mechanisms like Feature Squeezing to study mitigation effects. Performance metrics such as accuracy degradation, perturbation size, and model recovery were visualized through graphs and confusion matrices. This project provided deep insights into AI security and model vulnerability, preparing me for roles in adversarial ML research or secure AI deployment.', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
-      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'This project aimed to create an AI-powered accident detection system using real-time video analysis and sensor-based logic. I used OpenCV for frame-by-frame motion analysis and edge detection to simulate vehicle collisions. Logical thresholds were established to trigger alerts in the event of a sharp movement or object impact, simulating a real-world road accident scenario. The system was designed to be deployable on smart roads or integrated into automotive dashboards for live monitoring. I also explored expanding the system to include GPS integration and automated emergency contact triggers. This project deepened my practical understanding of computer vision techniques and how AI can be used for safety-critical applications.', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
-      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'Escape Room 404 is an Android-based puzzle game developed using Unity. I contributed to the core level design, game logic, and puzzle mechanisms. The game challenges players to solve clues and escape from themed rooms, with increasing complexity at each stage. I used C# for scripting events and object interactions, ensuring smooth transitions and a responsive user interface. The game was built for mobile platforms and is accessible via a downloadable APK through QR code. This project enhanced my skills in interactive storytelling, mobile game development, and real-time event handling using Unity’s engine.', link: 'https://github.com/skgtheking/383--404' },
-      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'BarterDB is a collaborative full-stack platform designed to enable users to post items for trade, initiate secure transactions, and manage user listings. I created an efficient MySQL database schema with tables for users, items, transactions, and equivalence values. The platform features user and admin dashboards, each with role-specific capabilities such as posting items, approving trades, managing accounts, and monitoring completed transactions. A unique 16-digit hash-based exchange mechanism was implemented to ensure anonymity and trade security. The frontend was developed using HTML, CSS, and JavaScript, while the backend used PHP with XAMPP for local server deployment. Additional tools included Lucidchart for ER diagrams, Power BI for visualization, and GitHub for version control. This project helped me gain comprehensive experience in secure transaction systems, role-based dashboards, and scalable full-stack development.', link: 'https://nikki44k.github.io/BarterDB/' },
-      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Udemy, May 2024 — Instructor: Hamza Sheikh. Kali Linux.', link: '#' },
-      { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Introduction to Cybersecurity', desc: 'Cisco, Jan 2024 — Basics of digital safety, cyber hygiene.', link: 'https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile' },
-      { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: 'Cisco, Jan 2024 — Foundations of Python programming.', link: 'https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile' }
+      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: '...', link: '#' },
+      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: '...', link: 'https://github.com/Nightyelf2403/wa' },
+      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: '...', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
+      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: '...', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
+      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: '...', link: 'https://github.com/skgtheking/383--404' },
+      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: '...', link: 'https://nikki44k.github.io/BarterDB/' },
+      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: '...', link: '#' },
+      { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Intro to Cybersecurity', desc: '...', link: '#' },
+      { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: '...', link: '#' }
     ];
-
-    let currentIndex = 0;
 
     function renderCards() {
       const projectsGrid = document.getElementById("projectsGrid");
       const certsGrid = document.getElementById("certificationsGrid");
 
-      const projectCards = allCards.slice(0, 6).map((c, i) => `
-        <div class='project-card' onclick='openModal(${i})'>
-          <img src='${c.img}' onerror="this.style.display='none'"><h3>${c.title}</h3><p>Click to view more...</p>
+      const projectCards = allCards.slice(0, 6).map(c => `
+        <div class='project-card' onclick='window.open("${c.link}", "_blank")'>
+          <img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>
         </div>`).join('');
 
-      const certCards = allCards.slice(6).map((c, i) => `
-        <div class='project-card' onclick='openModal(${i + 6})'>
-          <img src='${c.img}' onerror="this.style.display='none'"><h3>${c.title}</h3><p>Click to view more...</p>
+      const certCards = allCards.slice(6).map(c => `
+        <div class='project-card' onclick='window.open("${c.link}", "_blank")'>
+          <img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>
         </div>`).join('');
 
       projectsGrid.innerHTML = projectCards;
       certsGrid.innerHTML = certCards;
     }
 
-    function openModal(index) {
-      currentIndex = index;
-      const card = allCards[index];
-      modalImage.src = card.img;
-      modalTitle.innerText = card.title;
-      modalDesc.innerText = card.desc;
-      modalLink.href = card.link;
-      modalLink.style.display = card.link === '#' ? 'none' : 'flex';
-      modal.style.display = "block";
-      document.body.classList.add("modal-open");
-    }
-
-    function closeModal() {
-      modal.style.display = "none";
-      document.body.classList.remove("modal-open");
-    }
-
-    function outsideModalClick(e) {
-      if (e.target === modal) closeModal();
-    }
-
-    function navigateModal(dir) {
-      let nextIndex = currentIndex + dir;
-      if (nextIndex < 0) nextIndex = allCards.length - 1;
-      if (nextIndex >= allCards.length) nextIndex = 0;
-      openModal(nextIndex);
-    }
-
-    window.addEventListener("keydown", function(e) {
-      if (modal.style.display === "block") {
-        if (e.key === "Escape") closeModal();
-        else if (e.key === "ArrowLeft") navigateModal(-1);
-        else if (e.key === "ArrowRight") navigateModal(1);
-      }
-    });
-
-    window.onload = renderCards;
-  </script>
-  <script>
     function toggleMenu() {
       const navLinks = document.getElementById("navLinks");
       navLinks.classList.toggle("active");
     }
+
+    window.onload = renderCards;
   </script>
 </body>
 </html>
