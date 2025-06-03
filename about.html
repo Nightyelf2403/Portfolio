@@ -143,70 +143,41 @@
       background: #d94700;
     }
 
-    #chatbot-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
 
-    #chatbox {
-      display: none;
-      flex-direction: column;
-      width: 320px;
-      height: 420px;
-      background: #1e1e1e;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-      padding: 10px;
-      color: #ffffff;
-      border: 1px solid var(--accent-color);
-    }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 100;
+      }
 
-    #chatbox.active {
-      display: flex;
-    }
+      .nav-links.active {
+        display: flex;
+      }
 
-    #chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      margin-bottom: 10px;
-      padding: 5px;
-      font-size: 14px;
-    }
+      .nav-links li a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
+      }
 
-    #chat-input {
-      display: flex;
-    }
+      .about-section {
+        flex-direction: column;
+        align-items: center;
+      }
 
-    #chat-input input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 8px 0 0 8px;
-      outline: none;
-      background: #333;
-      color: white;
-    }
-
-    #chat-input button {
-      padding: 10px;
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      border-radius: 0 8px 8px 0;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    #chat-toggle {
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
+      .about-content {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -236,27 +207,31 @@
       <div class="about-content">
         <h2>Introduction</h2>
         <p>I’m Lalith Aditya Chunduri, a passionate CS student exploring AI, ML, and full-stack development...</p>
-        <!-- Continue rest of unchanged content -->
-        <h2>Skill Set</h2>
+
+        <h2>Academic Journey</h2>
+        <p>I've developed responsive web apps and analytics tools using HTML, CSS, JS, Python, and SQL...</p>
+
+        <h2>Involvement & Impact</h2>
+        <p>From adversarial ML attacks to real-time AI systems, I’ve applied concepts from TensorFlow, OpenCV, and MongoDB...</p>
+
+        <h2>Certifications</h2>
+        <p>Certified in Cisco Cybersecurity, Python Essentials, and ethical hacking with Kali Linux...</p>
+
+        <h2>Skills</h2>
         <div class="skills-grid">
           <div class="skill-card">HTML</div>
           <div class="skill-card">CSS</div>
           <div class="skill-card">JavaScript</div>
           <div class="skill-card">Python</div>
-          <!-- Add more skills if needed -->
+          <div class="skill-card">MongoDB</div>
+          <div class="skill-card">SQL</div>
+          <div class="skill-card">TensorFlow</div>
+          <div class="skill-card">OpenCV</div>
+          <div class="skill-card">React (Basic)</div>
+          <div class="skill-card">Firebase</div>
         </div>
-        <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
-      </div>
-    </div>
-  </div>
 
-  <div id="chatbot-container">
-    <button id="chat-toggle">💬</button>
-    <div id="chatbox">
-      <div id="chat-messages"></div>
-      <div id="chat-input">
-        <input type="text" id="user-message" placeholder="Ask me anything..." />
-        <button onclick="sendMessage()">Send</button>
+        <a href="files/Lalith_Resume.pdf" class="resume-btn" download>Download Resume</a>
       </div>
     </div>
   </div>
@@ -264,42 +239,9 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
-
     function toggleMenu() {
       const navLinks = document.getElementById("navLinks");
       navLinks.classList.toggle("active");
-    }
-
-    document.getElementById("chat-toggle").onclick = function () {
-      document.getElementById("chatbox").classList.toggle("active");
-    };
-
-    async function sendMessage() {
-      const input = document.getElementById("user-message");
-      const message = input.value.trim();
-      if (!message) return;
-      appendMessage("You", message);
-      input.value = "";
-
-      try {
-        const res = await fetch("https://backend-portfolio-2f58.onrender.com/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message })
-        });
-        const data = await res.json();
-        appendMessage("Bot", data.reply || "No reply.");
-      } catch {
-        appendMessage("Bot", "Sorry, something went wrong.");
-      }
-    }
-
-    function appendMessage(sender, text) {
-      const chatMessages = document.getElementById("chat-messages");
-      const msg = document.createElement("div");
-      msg.textContent = `${sender}: ${text}`;
-      chatMessages.appendChild(msg);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
     }
   </script>
 
