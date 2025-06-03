@@ -335,7 +335,7 @@
         const res = await fetch("https://backend-portfolio-2f58.onrender.com/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: chatHistory })
+          body: JSON.stringify({ message })
         });
         const data = await res.json();
         appendTypingEffect("Bot", data.reply);
