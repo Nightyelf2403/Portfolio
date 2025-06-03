@@ -12,32 +12,30 @@
       margin: auto;
       padding: 40px 20px;
     }
-
     .sub-title {
       color: #ff9800;
       font-size: 28px;
       margin: 40px 0 20px;
       text-align: center;
     }
-
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 25px;
       padding: 20px 0;
     }
-
     .project-card {
       background-color: #1c1c1c;
       border: 1px solid #333;
       border-radius: 10px;
       padding: 15px;
-      text-align: center;
       color: #fff;
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-
     .project-card img {
       width: 100%;
       max-height: 150px;
@@ -45,18 +43,19 @@
       border-radius: 8px;
       margin-bottom: 10px;
     }
-
     .project-card h3 {
       margin: 10px 0 5px;
       font-size: 18px;
       color: #ff9800;
     }
-
+    .project-card p {
+      font-size: 14px;
+      color: #ccc;
+    }
     .project-card:hover {
       transform: scale(1.05);
       box-shadow: 0 0 10px #f5560c80;
     }
-
     .resume-btn {
       display: inline-block;
       margin: 20px auto;
@@ -68,9 +67,43 @@
       border-radius: 8px;
       transition: background 0.3s ease;
     }
-
     .resume-btn:hover {
       background: #d94700;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #111;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 100;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .nav-links li a {
+        display: block;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
+      }
     }
   </style>
 </head>
@@ -78,9 +111,7 @@
   <div id="header" style="width: 100%; height: 70px; background-color: #111; display: flex; align-items: center; justify-content: space-between; padding: 0 10%;">
     <img src="images/aditya.png" alt="Logo" style="height: 50px;">
     <div class="hamburger" onclick="toggleMenu()">
-      <div style="width: 25px; height: 3px; background-color: #fff;"></div>
-      <div style="width: 25px; height: 3px; background-color: #fff;"></div>
-      <div style="width: 25px; height: 3px; background-color: #fff;"></div>
+      <div></div><div></div><div></div>
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
@@ -102,37 +133,32 @@
     </center>
   </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
   <script>
     const allCards = [
-      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: '...', link: '#' },
-      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: '...', link: 'https://github.com/Nightyelf2403/wa' },
-      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: '...', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
-      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: '...', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
-      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: '...', link: 'https://github.com/skgtheking/383--404' },
-      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: '...', link: 'https://nikki44k.github.io/BarterDB/' },
-      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: '...', link: '#' },
-      { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Intro to Cybersecurity', desc: '...', link: '#' },
-      { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: '...', link: '#' }
+      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Filming and editing game-day and practice footage using DSLR and video tools for UIdaho Football. Tech: DSLR, Adobe Premiere.', link: '#' },
+      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Built using Node.js, Express, MongoDB, and APIs (OpenWeather, GeoDB, YouTube, Google Maps). Frontend in HTML/CSS/JS. Deployed on Vercel/Render.', link: 'https://github.com/Nightyelf2403/wa' },
+      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'Used PyTorch to generate and defend against adversarial ML attacks like Square/EAD/ZOO on pretrained models. Dataset: Bean Leaf.', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
+      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'Computer vision with OpenCV and Python to detect real-time motion changes, simulating vehicle collisions. Applied threshold logic.', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
+      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'Built an Android puzzle game using Unity and C#. Worked on level design and object interactions. Deployed APK via QR.', link: 'https://github.com/skgtheking/383--404' },
+      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'Secure item trading system built with HTML, CSS, JS, PHP and MySQL. Implemented 16-digit hash verification and role-based dashboards.', link: 'https://nikki44k.github.io/BarterDB/' },
+      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Completed Udemy course with Kali Linux labs. Instructor: Hamza Sheikh.', link: '#' },
+      { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Intro to Cybersecurity', desc: 'Cisco certification. Covered digital threats, cyber hygiene, and basic online safety.', link: '#' },
+      { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: 'Cisco certification covering variables, loops, functions, and core Python skills.', link: '#' }
     ];
 
     function renderCards() {
       const projectsGrid = document.getElementById("projectsGrid");
       const certsGrid = document.getElementById("certificationsGrid");
 
-      const projectCards = allCards.slice(0, 6).map(c => `
-        <div class='project-card' onclick='window.open("${c.link}", "_blank")'>
+      projectsGrid.innerHTML = allCards.slice(0, 6).map(c => `
+        <div class='project-card' onclick='alert("${c.desc.replace(/"/g, '\"')}")'>
           <img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>
         </div>`).join('');
 
-      const certCards = allCards.slice(6).map(c => `
-        <div class='project-card' onclick='window.open("${c.link}", "_blank")'>
+      certsGrid.innerHTML = allCards.slice(6).map(c => `
+        <div class='project-card' onclick='alert("${c.desc.replace(/"/g, '\"')}")'>
           <img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>
         </div>`).join('');
-
-      projectsGrid.innerHTML = projectCards;
-      certsGrid.innerHTML = certCards;
     }
 
     function toggleMenu() {
