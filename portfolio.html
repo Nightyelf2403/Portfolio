@@ -32,9 +32,6 @@
       color: #fff;
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
     .project-card img {
       width: 100%;
@@ -81,6 +78,32 @@
       height: 3px;
       background-color: #fff;
     }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+    .modal-content {
+      background-color: #111;
+      margin: 10vh auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 700px;
+      color: white;
+    }
+    .close-btn {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
     @media (max-width: 768px) {
       .hamburger {
         display: flex;
@@ -103,6 +126,8 @@
         display: block;
         padding: 12px 20px;
         border-bottom: 1px solid #333;
+        color: white;
+        text-decoration: none;
       }
     }
   </style>
@@ -133,37 +158,49 @@
     </center>
   </div>
 
+  <div id="projectModal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDesc"></p>
+      <a id="modalLink" href="#" target="_blank" style="color:#00e5ff;">View on GitHub</a>
+    </div>
+  </div>
+
   <script>
     const allCards = [
-      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Filming and editing game-day and practice footage using DSLR and video tools for UIdaho Football. Tech: DSLR, Adobe Premiere.', link: '#' },
-      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Built using Node.js, Express, MongoDB, and APIs (OpenWeather, GeoDB, YouTube, Google Maps). Frontend in HTML/CSS/JS. Deployed on Vercel/Render.', link: 'https://github.com/Nightyelf2403/wa' },
-      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'Used PyTorch to generate and defend against adversarial ML attacks like Square/EAD/ZOO on pretrained models. Dataset: Bean Leaf.', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
-      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'Computer vision with OpenCV and Python to detect real-time motion changes, simulating vehicle collisions. Applied threshold logic.', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
-      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'Built an Android puzzle game using Unity and C#. Worked on level design and object interactions. Deployed APK via QR.', link: 'https://github.com/skgtheking/383--404' },
-      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'Secure item trading system built with HTML, CSS, JS, PHP and MySQL. Implemented 16-digit hash verification and role-based dashboards.', link: 'https://nikki44k.github.io/BarterDB/' },
-      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Completed Udemy course with Kali Linux labs. Instructor: Hamza Sheikh.', link: '#' },
-      { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Intro to Cybersecurity', desc: 'Cisco certification. Covered digital threats, cyber hygiene, and basic online safety.', link: '#' },
-      { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: 'Cisco certification covering variables, loops, functions, and core Python skills.', link: '#' }
+      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Captured and edited practice/game footage for UIdaho Football using DSLR & Premiere Pro. Teamwork and field logistics were key.', link: '#' },
+      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Built with Node.js, Express, MongoDB, OpenWeather API, YouTube API, GeoDB, and Google Maps. Vercel+Render deployed.', link: 'https://github.com/Nightyelf2403/wa' },
+      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'Tested ResNet50, VGG16 using PyTorch. Attacks: Square, ZOO, EAD. Used Bean Leaf dataset, implemented Feature Squeezing.', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
+      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'OpenCV-based motion detection system for vehicles. Used contouring, thresholding. Planned GPS + emergency triggers.', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
+      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'Unity Android puzzle game using C#. Built levels, object interactions. Published APK with story-based progression.', link: 'https://github.com/skgtheking/383--404' },
+      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'MySQL + PHP trade platform. 16-digit hash verification. Admin + user dashboards. Deployed with XAMPP, Power BI used.', link: 'https://nikki44k.github.io/BarterDB/' }
     ];
 
     function renderCards() {
       const projectsGrid = document.getElementById("projectsGrid");
-      const certsGrid = document.getElementById("certificationsGrid");
-
-      projectsGrid.innerHTML = allCards.slice(0, 6).map(c => `
-        <div class='project-card' onclick='alert("${c.desc.replace(/"/g, '\"')}")'>
-          <img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>
-        </div>`).join('');
-
-      certsGrid.innerHTML = allCards.slice(6).map(c => `
-        <div class='project-card' onclick='alert("${c.desc.replace(/"/g, '\"')}")'>
+      projectsGrid.innerHTML = allCards.map((c, i) => `
+        <div class='project-card' onclick='openModal(${i})'>
           <img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>
         </div>`).join('');
     }
 
+    function openModal(index) {
+      const card = allCards[index];
+      document.getElementById("modalTitle").innerText = card.title;
+      document.getElementById("modalDesc").innerText = card.desc;
+      const link = document.getElementById("modalLink");
+      link.href = card.link;
+      link.style.display = card.link === '#' ? 'none' : 'inline';
+      document.getElementById("projectModal").style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById("projectModal").style.display = 'none';
+    }
+
     function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      navLinks.classList.toggle("active");
+      document.getElementById("navLinks").classList.toggle("active");
     }
 
     window.onload = renderCards;
