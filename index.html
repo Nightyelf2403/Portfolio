@@ -28,6 +28,7 @@
       height: 70px;
       background-color: #111;
       padding: 0 10%;
+      position: relative;
     }
 
     .logo {
@@ -137,7 +138,6 @@
       color: var(--accent-color);
     }
 
-    /* === Chatbot Styles === */
     #chatbot-container {
       position: fixed;
       bottom: 20px;
@@ -148,14 +148,13 @@
     #chatbox {
       display: none;
       flex-direction: column;
-      width: 320px;
+      width: 300px;
       height: 420px;
-      background: #1e1e1e;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       padding: 10px;
-      color: #ffffff;
-      border: 1px solid #f5560c;
+      color: black;
     }
 
     #chatbox.active {
@@ -166,9 +165,29 @@
       flex: 1;
       overflow-y: auto;
       margin-bottom: 10px;
-      padding: 5px;
-      font-size: 14px;
-      line-height: 1.4;
+    }
+
+    #suggested-questions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+
+    #suggested-questions button {
+      padding: 6px 12px;
+      background-color: #f5560c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #suggested-questions button:hover {
+      background-color: #d94700;
     }
 
     #chat-input {
@@ -178,11 +197,8 @@
     #chat-input input {
       flex: 1;
       padding: 10px;
-      border: none;
-      border-radius: 8px 0 0 8px;
-      outline: none;
-      background: #333;
-      color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px 0 0 5px;
     }
 
     #chat-input button {
@@ -190,28 +206,17 @@
       background: var(--accent-color);
       color: white;
       border: none;
-      border-radius: 0 8px 8px 0;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    #chat-input button:hover {
-      background: #d94700;
+      border-radius: 0 5px 5px 0;
     }
 
     #chat-toggle {
       background: var(--accent-color);
       color: white;
       border: none;
-      padding: 12px;
+      padding: 10px;
       border-radius: 50%;
       font-size: 20px;
       cursor: pointer;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    #chat-toggle:hover {
-      background: #d94700;
     }
 
     @media (max-width: 768px) {
@@ -245,27 +250,14 @@
         padding: 12px 20px;
         border-bottom: 1px solid #333;
       }
-
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-
-      .hero-buttons a {
-        display: block;
-        margin: 10px auto;
-        width: fit-content;
-      }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <img src="images/aditya.png" alt="Aditya Logo" class="logo">
     <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div>
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html">Home</a></li>
@@ -289,10 +281,14 @@
     </div>
   </main>
 
-  <!-- Chatbot Widget -->
   <div id="chatbot-container">
     <button id="chat-toggle">💬</button>
     <div id="chatbox">
+      <div id="suggested-questions">
+        <button onclick="setQuickQuestion('What are your skills?')">What are your skills?</button>
+        <button onclick="setQuickQuestion('Show your resume')">Show your resume</button>
+        <button onclick="setQuickQuestion('What projects have you built?')">What projects have you built?</button>
+      </div>
       <div id="chat-messages"></div>
       <div id="chat-input">
         <input type="text" id="user-message" placeholder="Ask me anything..." />
@@ -311,14 +307,20 @@
   </footer>
 
   <script>
+    let chatHistory = [];
+
     function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      navLinks.classList.toggle("active");
+      document.getElementById("navLinks").classList.toggle("active");
     }
 
     document.getElementById("chat-toggle").onclick = function () {
       document.getElementById("chatbox").classList.toggle("active");
     };
+
+    function setQuickQuestion(text) {
+      document.getElementById("user-message").value = text;
+      sendMessage();
+    }
 
     async function sendMessage() {
       const input = document.getElementById("user-message");
@@ -327,18 +329,18 @@
 
       appendMessage("You", message);
       input.value = "";
+      chatHistory.push({ role: "user", content: message });
 
       try {
         const res = await fetch("https://backend-portfolio-2f58.onrender.com/api/chat", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ message })
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: chatHistory })
         });
         const data = await res.json();
-        appendMessage("Bot", data.reply || "No reply");
-      } catch {
+        appendTypingEffect("Bot", data.reply);
+        chatHistory.push({ role: "assistant", content: data.reply });
+      } catch (err) {
         appendMessage("Bot", "Sorry, something went wrong.");
       }
     }
@@ -346,11 +348,27 @@
     function appendMessage(sender, text) {
       const chatMessages = document.getElementById("chat-messages");
       const msg = document.createElement("div");
-      msg.textContent = `${sender}: ${text}`;
+      msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
       chatMessages.appendChild(msg);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-  </script>
 
+    function appendTypingEffect(sender, text) {
+      const chatMessages = document.getElementById("chat-messages");
+      const msg = document.createElement("div");
+      msg.innerHTML = `<strong>${sender}:</strong> `;
+      chatMessages.appendChild(msg);
+      let i = 0;
+      function typeChar() {
+        if (i < text.length) {
+          msg.innerHTML += text.charAt(i);
+          i++;
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          setTimeout(typeChar, 20);
+        }
+      }
+      typeChar();
+    }
+  </script>
 </body>
 </html>
