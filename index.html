@@ -307,8 +307,6 @@
   </footer>
 
   <script>
-    let chatHistory = [];
-
     function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("active");
     }
@@ -329,7 +327,14 @@
 
       appendMessage("You", message);
       input.value = "";
-      chatHistory.push({ role: "user", content: message });
+
+      const lower = message.toLowerCase();
+      for (const key in predefinedReplies) {
+        if (lower.includes(key)) {
+          appendMessage("Bot", predefinedReplies[key]);
+          return;
+        }
+      }
 
       try {
         const res = await fetch("https://backend-portfolio-2f58.onrender.com/api/chat", {
@@ -339,7 +344,6 @@
         });
         const data = await res.json();
         appendTypingEffect("Bot", data.reply);
-        chatHistory.push({ role: "assistant", content: data.reply });
       } catch (err) {
         appendMessage("Bot", "Sorry, something went wrong.");
       }
@@ -348,7 +352,11 @@
     function appendMessage(sender, text) {
       const chatMessages = document.getElementById("chat-messages");
       const msg = document.createElement("div");
-      msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+      const avatar = sender === "You"
+        ? "<img src='images/user.png' style='width:20px; vertical-align:middle; margin-right:6px;'/>"
+        : "<img src='images/bot.png' style='width:20px; vertical-align:middle; margin-right:6px;'/>";
+
+      msg.innerHTML = `<div>${avatar}<strong>${sender}:</strong> ${text}</div>`;
       chatMessages.appendChild(msg);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
@@ -380,63 +388,6 @@
       "show linkedin": "Connect with me on LinkedIn: <a href='https://www.linkedin.com/in/lalith-aditya-chunduri' target='_blank'>LinkedIn</a>",
       "show contact": "You can reach me via email at adiaditya7907@gmail.com or use the Contact form on this site."
     };
-
-    function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      navLinks.classList.toggle("active");
-    }
-
-    function toggleChat() {
-      const chatWindow = document.getElementById('chatWindow');
-      chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    function appendMessage(sender, text) {
-      const chatBody = document.getElementById('chatBody');
-      const msgWrapper = document.createElement('div');
-      msgWrapper.classList.add('chat-msg', sender);
-
-      const avatar = document.createElement('img');
-      avatar.src = sender === 'user' ? 'images/user.png' : 'images/bot.png';
-
-      const msgText = document.createElement('span');
-      msgText.innerHTML = text;
-
-      msgWrapper.appendChild(avatar);
-      msgWrapper.appendChild(msgText);
-      chatBody.appendChild(msgWrapper);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function sendMessage() {
-      const input = document.getElementById('chatMessage');
-      const message = input.value.trim();
-      if (!message) return;
-
-      appendMessage('user', message);
-      input.value = '';
-
-      const lower = message.toLowerCase();
-      for (const key in predefinedReplies) {
-        if (lower.includes(key)) {
-          appendMessage('bot', predefinedReplies[key]);
-          return;
-        }
-      }
-
-      fetch('https://backend-portfolio-2f58.onrender.com/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
-      })
-      .then(res => res.json())
-      .then(data => {
-        appendMessage('bot', data.reply);
-      })
-      .catch(() => {
-        appendMessage('bot', "Sorry, something went wrong.");
-      });
-    }
   </script>
 </body>
 </html>
