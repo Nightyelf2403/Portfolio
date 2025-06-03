@@ -33,6 +33,11 @@
       max-width: 700px;
       position: relative;
       animation: fadeIn 0.3s ease;
+      color: #fff;
+    }
+    .modal-content ul {
+      margin-top: 15px;
+      padding-left: 20px;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.95); }
@@ -57,7 +62,7 @@
     }
     .project-card img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 10px;
@@ -111,9 +116,10 @@
   <div id="projectModal" class="modal" onclick="outsideModalClick(event)">
     <div class="modal-content" data-aos="zoom-in" onclick="event.stopPropagation()">
       <span class="close-btn" onclick="closeModal()" style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer;">&times;</span>
-      <img id="modalImage" src="" alt="Project Image" style="max-width: 100%; height: auto; max-height: 300px; display: block; margin-bottom: 20px;">
+      <img id="modalImage" src="" alt="Project Image" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; margin-bottom: 20px;">
       <h2 id="modalTitle"></h2>
       <p id="modalDesc"></p>
+      <ul id="modalTech"></ul>
       <a id="modalLink" href="#" target="_blank" style="color: #00e5ff; display: none; align-items: center; gap: 8px;">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="20" height="20">
         View on GitHub
@@ -129,15 +135,15 @@
   <script>AOS.init();</script>
   <script>
     const allCards = [
-      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Recorded and edited football game/practice footage for coaches.', link: '#' },
-      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Forecast app with YouTube & Maps integration. CRUD with MongoDB.', link: 'https://github.com/Nightyelf2403/wa' },
-      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'Evaluated model robustness using FGSM, PGD, ZOO, Feature Squeezing.', link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
-      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'Real-time alert system using OpenCV and sensors.', link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
-      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'A Unity-based Android escape game. Playable via QR code scan.', link: 'https://github.com/skgtheking/383--404' },
-      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'Web app to post items and trade offers with admin dashboard.', link: 'https://nikki44k.github.io/BarterDB/' },
-      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Udemy, May 2024 — Instructor: Hamza Sheikh. Kali Linux.', link: '#' },
-      { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Introduction to Cybersecurity', desc: 'Cisco, Jan 2024 — Basics of digital safety, cyber hygiene.', link: 'https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile' },
-      { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: 'Cisco, Jan 2024 — Foundations of Python programming.', link: 'https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile' }
+      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Forecast app with location search, forecast view, YouTube, and Maps integration.', tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB', 'OpenWeather API'], link: 'https://github.com/Nightyelf2403/wa' },
+      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'Robustness testing using attacks like FGSM, PGD, ZOO and defense using Feature Squeezing.', tech: ['Python', 'PyTorch', 'CleverHans', 'OpenCV'], link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
+      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'AI-driven road accident detection system using video processing and alerts.', tech: ['Python', 'OpenCV', 'Sensor Logic', 'Machine Learning'], link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
+      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'Android escape puzzle game with animated clues and levels.', tech: ['Unity', 'C#', 'Game Design'], link: 'https://github.com/skgtheking/383--404' },
+      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'Secure barter system for trading items with dashboard and transactions.', tech: ['HTML', 'PHP', 'MySQL', 'XAMPP'], link: 'https://nikki44k.github.io/BarterDB/' },
+      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Recorded and edited football game/practice footage for strategic analysis.', tech: ['Sony Cameras', 'Final Cut Pro', 'Premiere Pro'], link: '#' },
+      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Course completion on ethical hacking tools and basics.', tech: ['Kali Linux', 'Wireshark', 'Burp Suite'], link: '#' },
+      { img: 'https://via.placeholder.com/300x180?text=Cybersecurity', title: 'Introduction to Cybersecurity', desc: 'Cisco introduction course on cyber threats and safe practices.', tech: ['Cybersecurity Fundamentals'], link: 'https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile' },
+      { img: 'https://via.placeholder.com/300x180?text=Python+Essentials', title: 'Python Essentials 1', desc: 'Cisco course covering basics of Python programming.', tech: ['Python Basics'], link: 'https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile' }
     ];
 
     let currentIndex = 0;
@@ -150,7 +156,7 @@
         const div = document.createElement("div");
         div.className = "project-card";
         div.onclick = () => openModal(i);
-        div.innerHTML = `<img src='${c.img}' onerror="this.style.display='none'"><h3>${c.title}</h3><p>Click to view more...</p>`;
+        div.innerHTML = `<img src='${c.img}'><h3>${c.title}</h3><p>Click to view more...</p>`;
         if (i < 6) projectsGrid.appendChild(div);
         else certsGrid.appendChild(div);
       });
@@ -162,6 +168,8 @@
       document.getElementById("modalImage").src = card.img;
       document.getElementById("modalTitle").innerText = card.title;
       document.getElementById("modalDesc").innerText = card.desc;
+      const techList = document.getElementById("modalTech");
+      techList.innerHTML = card.tech ? card.tech.map(t => `<li>${t}</li>`).join('') : '';
       const modalLink = document.getElementById("modalLink");
       modalLink.href = card.link;
       modalLink.style.display = card.link === '#' ? 'none' : 'flex';
