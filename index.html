@@ -109,8 +109,8 @@
     #chatbox {
       display: none;
       flex-direction: column;
-      width: 380px;
-      height: 540px;
+      width: 400px;
+      height: 550px;
       background: white;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -188,6 +188,23 @@
       color: var(--accent-color);
       text-decoration: underline;
       font-weight: bold;
+    }
+
+    @keyframes type {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid orange;
+      white-space: nowrap;
+      animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
 
     @media (max-width: 768px) {
@@ -352,7 +369,6 @@
       }
       typeChar();
     }
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll("#suggested-questions button").forEach(button => {
@@ -361,7 +377,30 @@
           sendMessage();
         });
       });
+
+      document.getElementById("chat-toggle").addEventListener("click", function () {
+        document.getElementById("chatbox").classList.toggle("active");
+      });
     });
+
+    function appendTypingEffect(sender, text) {
+      const chatMessages = document.getElementById("chat-messages");
+      const msg = document.createElement("div");
+      msg.innerHTML = `<strong>${sender}:</strong> <span class='typewriter'></span>`;
+      chatMessages.appendChild(msg);
+
+      const span = msg.querySelector(".typewriter");
+      let i = 0;
+      function typeChar() {
+        if (i < text.length) {
+          span.textContent += text.charAt(i);
+          i++;
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          setTimeout(typeChar, 25);
+        }
+      }
+      typeChar();
+    }
   </script>
 </body>
 </html>
