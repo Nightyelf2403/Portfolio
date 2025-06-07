@@ -80,6 +80,25 @@
       text-align: center;
     }
 
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer ul li a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    footer ul li a:hover {
+      color: var(--accent-color);
+    }
+
     #chatbot-container {
       position: fixed;
       bottom: 20px;
@@ -163,6 +182,12 @@
       font-size: 22px;
       cursor: pointer;
       box-shadow: 0 0 10px var(--accent-color);
+    }
+
+    #chat-messages a {
+      color: var(--accent-color);
+      text-decoration: underline;
+      font-weight: bold;
     }
 
     @media (max-width: 768px) {
@@ -332,7 +357,6 @@
       "show contact": "You can reach me via email at adiaditya7907@gmail.com or use the Contact form on this site."
     };
   </script>
-
 </body>
 </html>
 
