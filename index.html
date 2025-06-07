@@ -326,23 +326,24 @@
     }
 
     function appendTypingEffect(sender, text) {
-      const chatMessages = document.getElementById("chat-messages");
-      const msg = document.createElement("div");
-      msg.innerHTML = `<strong>${sender}:</strong> <span class='typewriter'></span>`;
-      chatMessages.appendChild(msg);
+  const chatMessages = document.getElementById("chat-messages");
+  const msg = document.createElement("div");
+  msg.innerHTML = `<strong>${sender}:</strong> <span class='typewriter'></span>`;
+  chatMessages.appendChild(msg);
 
-      const span = msg.querySelector(".typewriter");
-      let i = 0;
-      function typeChar() {
-        if (i < text.length) {
-          span.textContent += text.charAt(i);
-          i++;
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-          setTimeout(typeChar, 25);
-        }
-      }
-      typeChar();
+  const span = msg.querySelector(".typewriter");
+  let i = 0;
+  function typeChar() {
+    if (i <= text.length) {
+      span.innerHTML = text.substring(0, i);
+      i++;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      setTimeout(typeChar, 20);
     }
+  }
+  typeChar();
+}
+
 
     // Toggle chatbox visibility
     document.getElementById('chat-toggle').addEventListener('click', function () {
