@@ -13,6 +13,7 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Container */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -82,6 +83,18 @@ nav ul li a:hover::after {
   color: #f5560c;
 }
 
+.typewriter {
+  overflow: hidden;
+  border-right: .15em solid orange;
+  white-space: nowrap;
+  animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
 .footer-text {
   margin: 20px auto;
   text-align: center;
@@ -94,25 +107,26 @@ nav ul li a:hover::after {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 999;
+  z-index: 9999;
 }
 
 #chatbox {
   display: none;
   flex-direction: column;
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 550px;
   background: #1e1e1e;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  padding: 12px;
+  padding: 16px;
   color: white;
   overflow: hidden;
+  transition: all 0.3s ease-in-out;
 }
 
 #chatbox.active {
   display: flex;
-  animation: fadeInUp 0.3s ease;
+  animation: fadeInUp 0.4s ease;
 }
 
 #chat-messages {
@@ -121,6 +135,9 @@ nav ul li a:hover::after {
   padding-right: 5px;
   margin-bottom: 10px;
   scrollbar-width: thin;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
 }
 
 #chat-messages div {
@@ -149,20 +166,23 @@ nav ul li a:hover::after {
 
 #chat-input input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 8px 0 0 8px;
   background: #292929;
   color: white;
+  font-size: 15px;
 }
 
 #chat-input button {
-  padding: 10px 14px;
+  padding: 12px 16px;
   background: #f5560c;
   color: white;
   border: none;
   border-radius: 0 8px 8px 0;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
   transition: background 0.3s;
 }
 
@@ -184,6 +204,29 @@ nav ul li a:hover::after {
 
 #chat-toggle:hover {
   transform: scale(1.1);
+}
+
+#suggested-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+#suggested-questions button {
+  padding: 10px;
+  background: #f5560c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+#suggested-questions button:hover {
+  background: #d94700;
 }
 
 /* Animations */
@@ -214,6 +257,22 @@ nav ul li a:hover::after {
   }
 
   .sub-title {
-    font-size: 36px;
+    font-size: 30px;
+  }
+
+  #chatbox {
+    width: 90%;
+    height: 500px;
+    right: 5%;
+  }
+
+  #suggested-questions button {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  #chat-input input,
+  #chat-input button {
+    font-size: 13px;
   }
 }
