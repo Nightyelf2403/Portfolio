@@ -126,6 +126,26 @@
       border-radius: 10px;
       max-height: 100%;
     }
+    .chat-message {
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      max-width: 100%;
+      word-wrap: break-word;
+      background: #2c2c2c;
+      color: white;
+      font-size: 14px;
+    }
+    .chat-message strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent-color);
+    }
+    .chat-message a {
+      color: var(--accent-color);
+      text-decoration: underline;
+      font-weight: bold;
+    }
     #suggested-questions {
       display: flex;
       flex-direction: column;
@@ -171,11 +191,6 @@
       font-size: 22px;
       cursor: pointer;
       box-shadow: 0 0 10px var(--accent-color);
-    }
-    #chat-messages a {
-      color: var(--accent-color);
-      text-decoration: underline;
-      font-weight: bold;
     }
     .typewriter {
       overflow: hidden;
@@ -320,32 +335,32 @@
     function appendMessage(sender, text) {
       const chatMessages = document.getElementById("chat-messages");
       const msg = document.createElement("div");
+      msg.className = "chat-message";
       msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
       chatMessages.appendChild(msg);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     function appendTypingEffect(sender, text) {
-  const chatMessages = document.getElementById("chat-messages");
-  const msg = document.createElement("div");
-  msg.innerHTML = `<strong>${sender}:</strong> <span class='typewriter'></span>`;
-  chatMessages.appendChild(msg);
+      const chatMessages = document.getElementById("chat-messages");
+      const msg = document.createElement("div");
+      msg.className = "chat-message";
+      msg.innerHTML = `<strong>${sender}:</strong> <span class='typewriter'></span>`;
+      chatMessages.appendChild(msg);
 
-  const span = msg.querySelector(".typewriter");
-  let i = 0;
-  function typeChar() {
-    if (i <= text.length) {
-      span.innerHTML = text.substring(0, i);
-      i++;
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-      setTimeout(typeChar, 20);
+      const span = msg.querySelector(".typewriter");
+      let i = 0;
+      function typeChar() {
+        if (i <= text.length) {
+          span.innerHTML = text.substring(0, i);
+          i++;
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+          setTimeout(typeChar, 15);
+        }
+      }
+      typeChar();
     }
-  }
-  typeChar();
-}
 
-
-    // Toggle chatbox visibility
     document.getElementById('chat-toggle').addEventListener('click', function () {
       document.getElementById('chatbox').classList.toggle('active');
     });
