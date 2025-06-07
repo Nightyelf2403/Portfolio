@@ -63,8 +63,14 @@
       color: var(--accent-color);
     }
 
-    .hero .typewriter {
-      margin-bottom: 20px;
+    #intro-typewriter {
+      font-size: 18px;
+      white-space: pre-wrap;
+      margin-bottom: 30px;
+      color: white;
+      border-right: 2px solid var(--accent-color);
+      display: inline-block;
+      animation: blink-caret 0.75s step-end infinite;
     }
 
     .hero-buttons a {
@@ -287,7 +293,7 @@
     <div class="hero">
       <h1>Hi, I am <span>Lalith Aditya Chunduri</span></h1>
       <h1>Majoring in <span>Computer Science</span></h1>
-      <p class="typewriter">Aspiring Full Stack Developer | AI/ML Enthusiast | UI Designer</p>
+      <p id="intro-typewriter"></p>
       <div class="hero-buttons">
         <a href="portfolio.html">See My Work</a>
         <a href="files/Lalith_Resume.pdf" download>Download Resume</a>
@@ -401,6 +407,19 @@
     document.getElementById('chat-toggle').addEventListener('click', function () {
       document.getElementById('chatbox').classList.toggle('active');
     });
+
+    // ✅ Intro Typewriter for Hero Section
+    const introText = "Aspiring Full Stack Developer | AI/ML Enthusiast | UI Designer";
+    const introElement = document.getElementById("intro-typewriter");
+    let introIndex = 0;
+    function typeIntroText() {
+      if (introIndex < introText.length) {
+        introElement.innerHTML += introText.charAt(introIndex);
+        introIndex++;
+        setTimeout(typeIntroText, 30);
+      }
+    }
+    window.addEventListener("load", typeIntroText);
   </script>
 </body>
 </html>
