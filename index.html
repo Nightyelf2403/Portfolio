@@ -127,15 +127,27 @@
       max-height: 100%;
     }
     .chat-message {
-      padding: 10px 14px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      max-width: 100%;
-      word-wrap: break-word;
-      background: #2c2c2c;
-      color: white;
-      font-size: 14px;
-    }
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  background: #2c2c2c;
+  color: white;
+  font-size: 14px;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+    .typewriter {
+  display: inline-block;
+  border-right: .15em solid var(--accent-color);
+  animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
     .chat-message strong {
       display: block;
       margin-bottom: 4px;
