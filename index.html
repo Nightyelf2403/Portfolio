@@ -55,6 +55,9 @@
     .hero h1 span {
       color: var(--accent-color);
     }
+    .hero .typewriter {
+      margin-bottom: 20px;
+    }
     .hero-buttons a {
       margin: 0 10px;
       padding: 10px 20px;
@@ -96,24 +99,32 @@
       display: none;
       flex-direction: column;
       width: 400px;
+      max-width: 90vw;
       height: 550px;
+      max-height: 80vh;
       background: white;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       padding: 16px;
       color: black;
       font-size: 15px;
+      overflow: hidden;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s ease;
     }
     #chatbox.active {
       display: flex;
+      transform: translateY(0);
+      opacity: 1;
     }
     #chat-messages {
       flex: 1;
       overflow-y: auto;
-      margin-bottom: 12px;
       background: #f4f4f4;
       padding: 10px;
       border-radius: 10px;
+      max-height: 100%;
     }
     #suggested-questions {
       display: flex;
@@ -168,7 +179,7 @@
     }
     .typewriter {
       overflow: hidden;
-      border-right: .15em solid orange;
+      border-right: .15em solid var(--accent-color);
       white-space: nowrap;
       animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
     }
@@ -265,7 +276,7 @@
     const predefinedReplies = {
       "what are your skills": "I have experience in HTML, CSS, JavaScript, PHP, React, MongoDB, Node.js, and Python.",
       "what projects have you built": "I've built a Full Stack Weather App, Adversarial ML Evaluator, Accident Detection System, Unity Game, and BarterDB.",
-      "show resume": "Sure! You can download my resume <a href='files/Lalith_Resume.pdf' target='_blank'>here</a>.",
+      "show resume": "Sure! You can download my resume <a href='files/Lalith_Resume.pdf' target='_blank' style='color: var(--accent-color); font-weight: bold;'>here</a>.",
       "how did you build this portfolio": "This portfolio was created using HTML, CSS, JavaScript, GitHub Pages, and Cohere for the chatbot.",
       "what certifications do you have": "Certifications include Ethical Hacking (Udemy), Cybersecurity (Cisco), and Python Essentials (Cisco).",
       "show github": "Check out my GitHub profile: <a href='https://github.com/Nightyelf2403' target='_blank'>@Nightyelf2403</a>",
@@ -332,12 +343,11 @@
       }
       typeChar();
     }
-  </script>
-  <script>
-  document.getElementById('chat-toggle').addEventListener('click', function () {
-    document.getElementById('chatbox').classList.toggle('active');
-  });
-</script>
 
+    // Toggle chatbox visibility
+    document.getElementById('chat-toggle').addEventListener('click', function () {
+      document.getElementById('chatbox').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
