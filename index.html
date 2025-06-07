@@ -11,6 +11,7 @@
       --text-color: #ffffff;
       --accent-color: #f5560c;
     }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -19,6 +20,7 @@
       font-family: 'Segoe UI', sans-serif;
       height: 100%;
     }
+
     nav {
       display: flex;
       justify-content: space-between;
@@ -27,10 +29,12 @@
       height: 70px;
       padding: 0 10%;
     }
+
     .logo {
       height: 60px;
       border-radius: 6px;
     }
+
     .nav-links {
       display: flex;
       gap: 20px;
@@ -38,11 +42,13 @@
       padding: 0;
       margin: 0;
     }
+
     .nav-links li a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
     }
+
     .hero-wrapper {
       min-height: calc(100vh - 150px);
       display: flex;
@@ -52,12 +58,15 @@
       padding: 40px 20px;
       text-align: center;
     }
+
     .hero h1 span {
       color: var(--accent-color);
     }
+
     .hero .typewriter {
       margin-bottom: 20px;
     }
+
     .hero-buttons a {
       margin: 0 10px;
       padding: 10px 20px;
@@ -67,12 +76,14 @@
       font-weight: bold;
       text-decoration: none;
     }
+
     footer {
       background: #111;
       color: #ccc;
       padding: 20px;
       text-align: center;
     }
+
     footer ul {
       list-style: none;
       padding: 0;
@@ -82,19 +93,23 @@
       gap: 20px;
       flex-wrap: wrap;
     }
+
     footer ul li a {
       color: #ccc;
       text-decoration: none;
     }
+
     footer ul li a:hover {
       color: var(--accent-color);
     }
+
     #chatbot-container {
       position: fixed;
       bottom: 20px;
       right: 20px;
       z-index: 9999;
     }
+
     #chatbox {
       display: none;
       flex-direction: column;
@@ -113,11 +128,13 @@
       opacity: 0;
       transition: all 0.3s ease;
     }
+
     #chatbox.active {
       display: flex;
       transform: translateY(0);
       opacity: 1;
     }
+
     #chat-messages {
       flex: 1;
       overflow-y: auto;
@@ -126,44 +143,54 @@
       border-radius: 10px;
       max-height: 100%;
     }
+
     .chat-message {
-  padding: 10px 14px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  max-width: 100%;
-  background: #2c2c2c;
-  color: white;
-  font-size: 14px;
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-}
-
-    .typewriter {
-  display: inline;
-  border-right: 2px solid var(--accent-color);
-  animation: blink-caret 0.75s step-end infinite;
-  white-space: normal;
-  word-break: break-word;
-}
-
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      max-width: 100%;
+      background: #2c2c2c;
+      color: white;
+      font-size: 14px;
+      word-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;
+    }
 
     .chat-message strong {
       display: block;
       margin-bottom: 4px;
       color: var(--accent-color);
     }
+
     .chat-message a {
       color: var(--accent-color);
       text-decoration: underline;
       font-weight: bold;
     }
+
+    .typewriter {
+      display: inline;
+      border-right: 2px solid var(--accent-color);
+      animation: blink-caret 0.75s step-end infinite;
+      white-space: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--accent-color); }
+    }
+
     #suggested-questions {
       display: flex;
       flex-direction: column;
       gap: 8px;
       margin-bottom: 12px;
     }
+
     #suggested-questions button {
       padding: 10px;
       background: var(--accent-color);
@@ -174,9 +201,11 @@
       font-weight: bold;
       font-size: 14px;
     }
+
     #chat-input {
       display: flex;
     }
+
     #chat-input input {
       flex: 1;
       padding: 12px;
@@ -185,6 +214,7 @@
       background: #333;
       color: white;
     }
+
     #chat-input button {
       padding: 12px;
       background: var(--accent-color);
@@ -194,6 +224,7 @@
       font-weight: bold;
       cursor: pointer;
     }
+
     #chat-toggle {
       background: var(--accent-color);
       color: white;
@@ -204,16 +235,7 @@
       cursor: pointer;
       box-shadow: 0 0 10px var(--accent-color);
     }
-    .typewriter {
-      overflow: hidden;
-      border-right: .15em solid var(--accent-color);
-      white-space: nowrap;
-      animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
+
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -225,15 +247,18 @@
         left: 0;
         padding: 10px 0;
       }
+
       .nav-links.active {
         display: flex;
       }
+
       .hamburger {
         display: flex;
         flex-direction: column;
         gap: 5px;
         cursor: pointer;
       }
+
       .hamburger div {
         width: 25px;
         height: 3px;
