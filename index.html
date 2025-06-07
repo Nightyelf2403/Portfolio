@@ -11,7 +11,6 @@
       --text-color: #ffffff;
       --accent-color: #f5560c;
     }
-
     html, body {
       margin: 0;
       padding: 0;
@@ -20,7 +19,6 @@
       font-family: 'Segoe UI', sans-serif;
       height: 100%;
     }
-
     nav {
       display: flex;
       justify-content: space-between;
@@ -29,12 +27,10 @@
       height: 70px;
       padding: 0 10%;
     }
-
     .logo {
       height: 60px;
       border-radius: 6px;
     }
-
     .nav-links {
       display: flex;
       gap: 20px;
@@ -42,13 +38,11 @@
       padding: 0;
       margin: 0;
     }
-
     .nav-links li a {
       color: #fff;
       text-decoration: none;
       font-weight: 500;
     }
-
     .hero-wrapper {
       min-height: calc(100vh - 150px);
       display: flex;
@@ -58,11 +52,9 @@
       padding: 40px 20px;
       text-align: center;
     }
-
     .hero h1 span {
       color: var(--accent-color);
     }
-
     .hero-buttons a {
       margin: 0 10px;
       padding: 10px 20px;
@@ -72,14 +64,12 @@
       font-weight: bold;
       text-decoration: none;
     }
-
     footer {
       background: #111;
       color: #ccc;
       padding: 20px;
       text-align: center;
     }
-
     footer ul {
       list-style: none;
       padding: 0;
@@ -89,23 +79,19 @@
       gap: 20px;
       flex-wrap: wrap;
     }
-
     footer ul li a {
       color: #ccc;
       text-decoration: none;
     }
-
     footer ul li a:hover {
       color: var(--accent-color);
     }
-
     #chatbot-container {
       position: fixed;
       bottom: 20px;
       right: 20px;
       z-index: 9999;
     }
-
     #chatbox {
       display: none;
       flex-direction: column;
@@ -118,11 +104,9 @@
       color: black;
       font-size: 15px;
     }
-
     #chatbox.active {
       display: flex;
     }
-
     #chat-messages {
       flex: 1;
       overflow-y: auto;
@@ -131,14 +115,12 @@
       padding: 10px;
       border-radius: 10px;
     }
-
     #suggested-questions {
       display: flex;
       flex-direction: column;
       gap: 8px;
       margin-bottom: 12px;
     }
-
     #suggested-questions button {
       padding: 10px;
       background: var(--accent-color);
@@ -149,11 +131,9 @@
       font-weight: bold;
       font-size: 14px;
     }
-
     #chat-input {
       display: flex;
     }
-
     #chat-input input {
       flex: 1;
       padding: 12px;
@@ -162,7 +142,6 @@
       background: #333;
       color: white;
     }
-
     #chat-input button {
       padding: 12px;
       background: var(--accent-color);
@@ -172,7 +151,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     #chat-toggle {
       background: var(--accent-color);
       color: white;
@@ -183,30 +161,21 @@
       cursor: pointer;
       box-shadow: 0 0 10px var(--accent-color);
     }
-
     #chat-messages a {
       color: var(--accent-color);
       text-decoration: underline;
       font-weight: bold;
     }
-
-    @keyframes type {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
     .typewriter {
       overflow: hidden;
       border-right: .15em solid orange;
       white-space: nowrap;
       animation: typing 2s steps(40, end), blink-caret .75s step-end infinite;
     }
-
     @keyframes typing {
       from { width: 0 }
       to { width: 100% }
     }
-
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -218,18 +187,15 @@
         left: 0;
         padding: 10px 0;
       }
-
       .nav-links.active {
         display: flex;
       }
-
       .hamburger {
         display: flex;
         flex-direction: column;
         gap: 5px;
         cursor: pointer;
       }
-
       .hamburger div {
         width: 25px;
         height: 3px;
@@ -245,7 +211,7 @@
       <div></div><div></div><div></div>
     </div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="portfolio.html">Projects</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -258,7 +224,7 @@
     <div class="hero">
       <h1>Hi, I am <span>Lalith Aditya Chunduri</span></h1>
       <h1>Majoring in <span>Computer Science</span></h1>
-      <p>Aspiring Full Stack Developer | AI/ML Enthusiast | UI Designer</p>
+      <p class="typewriter">Aspiring Full Stack Developer | AI/ML Enthusiast | UI Designer</p>
       <div class="hero-buttons">
         <a href="portfolio.html">See My Work</a>
         <a href="files/Lalith_Resume.pdf" download>Download Resume</a>
@@ -267,7 +233,7 @@
   </main>
 
   <div id="chatbot-container">
-    <button id="chat-toggle" onclick="document.getElementById('chatbox').classList.toggle('active')">💬</button>
+    <button id="chat-toggle">💬</button>
     <div id="chatbox">
       <div id="suggested-questions">
         <button onclick="setQuickQuestion('What are your skills?')">What are your skills?</button>
@@ -275,6 +241,8 @@
         <button onclick="setQuickQuestion('What projects have you built?')">What projects have you built?</button>
         <button onclick="setQuickQuestion('How did you build this portfolio?')">How did you build this portfolio?</button>
         <button onclick="setQuickQuestion('What certifications do you have?')">What certifications do you have?</button>
+        <button onclick="setQuickQuestion('Show GitHub')">Show GitHub</button>
+        <button onclick="setQuickQuestion('Show LinkedIn')">Show LinkedIn</button>
       </div>
       <div id="chat-messages"></div>
       <div id="chat-input">
@@ -301,10 +269,7 @@
       "how did you build this portfolio": "This portfolio was created using HTML, CSS, JavaScript, GitHub Pages, and Cohere for the chatbot.",
       "what certifications do you have": "Certifications include Ethical Hacking (Udemy), Cybersecurity (Cisco), and Python Essentials (Cisco).",
       "show github": "Check out my GitHub profile: <a href='https://github.com/Nightyelf2403' target='_blank'>@Nightyelf2403</a>",
-      "show linkedin": "You can connect with me on LinkedIn here: <a href='https://www.linkedin.com/in/lalith-aditya-chunduri' target='_blank'>LinkedIn</a>",
-      "show contact": "Feel free to email me at adiaditya7907@gmail.com or use the contact form on this site.",
-      "are you open to opportunities": "Yes, I’m currently looking for internships and full-time roles in software development and AI/ML.",
-      "how can i contact you": "You can contact me through the Contact page or email me directly at adiaditya7907@gmail.com."
+      "show linkedin": "You can connect with me on LinkedIn here: <a href='https://www.linkedin.com/in/lalith-aditya-chunduri' target='_blank'>LinkedIn</a>"
     };
 
     function setQuickQuestion(text) {
@@ -323,7 +288,7 @@
       const lower = message.toLowerCase();
       for (const key in predefinedReplies) {
         if (lower.includes(key)) {
-          appendMessage("Bot", predefinedReplies[key]);
+          appendTypingEffect("Bot", predefinedReplies[key]);
           return;
         }
       }
@@ -344,44 +309,10 @@
     function appendMessage(sender, text) {
       const chatMessages = document.getElementById("chat-messages");
       const msg = document.createElement("div");
-      const avatar = sender === "You"
-        ? "<img src='images/me.png' style='width:20px; vertical-align:middle; margin-right:6px;'/>"
-        : "<img src='images/user.png' style='width:20px; vertical-align:middle; margin-right:6px;'/>";
-
-      msg.innerHTML = `<div>${avatar}<strong>${sender}:</strong> ${text}</div>`;
+      msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
       chatMessages.appendChild(msg);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-
-    function appendTypingEffect(sender, text) {
-      const chatMessages = document.getElementById("chat-messages");
-      const msg = document.createElement("div");
-      msg.innerHTML = `<strong>${sender}:</strong> `;
-      chatMessages.appendChild(msg);
-      let i = 0;
-      function typeChar() {
-        if (i < text.length) {
-          msg.innerHTML += text.charAt(i);
-          i++;
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-          setTimeout(typeChar, 20);
-        }
-      }
-      typeChar();
-    }
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll("#suggested-questions button").forEach(button => {
-        button.addEventListener("click", () => {
-          document.getElementById("user-message").value = button.textContent;
-          sendMessage();
-        });
-      });
-
-      document.getElementById("chat-toggle").addEventListener("click", function () {
-        document.getElementById("chatbox").classList.toggle("active");
-      });
-    });
 
     function appendTypingEffect(sender, text) {
       const chatMessages = document.getElementById("chat-messages");
