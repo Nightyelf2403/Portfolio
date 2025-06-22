@@ -199,16 +199,77 @@
   <script>AOS.init();</script>
   <script>
     const allCards = [
-      { img: 'images/project-weather.jpg', title: 'Full Stack Weather App', desc: 'Developed as part of a full-stack assessment, this weather app integrates OpenWeather API, YouTube API, and Google Maps to deliver an interactive and visually engaging user experience. I implemented features like dynamic city search with autocomplete using GeoDB API, responsive cards for weather data, and dark mode toggle. The app displays 5-day forecasts and today’s hourly updates, with real-time weather icons and dynamic YouTube travel videos for searched cities. It also supports CRUD operations via a Node.js backend with MongoDB Atlas and allows exporting weather records in JSON, CSV, and PDF formats. This project showcases my ability to combine multiple APIs, design scalable backend endpoints, and build an aesthetically polished frontend deployed via Vercel.', tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB', 'OpenWeather API'], link: 'https://github.com/Nightyelf2403/wa' },
-      { img: 'images/project-adversarial.jpg', title: 'Adversarial Robustness', desc: 'In this machine learning project, I analyzed the robustness of pretrained deep learning models like VGG16 and ResNet50 against various adversarial attacks including EAD, Square, Zoo and Feature Squeezing. I fine-tuned models on Bean Leaf dataset and generated adversarial samples to evaluate performance drop and perturbation tolerance. I also implemented lightweight defense mechanisms like Feature Squeezing to study mitigation effects. Performance metrics such as accuracy degradation, perturbation size, and model recovery were visualized through graphs and confusion matrices. This project provided deep insights into AI security and model vulnerability, preparing me for roles in adversarial ML research or secure AI deployment.', tech: ['Python', 'PyTorch', 'CleverHans', 'OpenCV'], link: 'https://github.com/Nightyelf2403/adv-robustness-img' },
-      { img: 'images/project-accident.jpg', title: 'AI-Based Accident Detection', desc: 'The AI-Based Accident Detection and Emergency Response System is an innovative solution designed to enhance road safety by using artificial intelligence to monitor and detect traffic accidents in real time. This project utilizes live video feeds from traffic cameras and dashcams to automatically identify collision events, vehicle breakdowns, or unusual roadside behavior. By employing deep learning models such as YOLO and Faster R-CNN for vehicle tracking and CNNs, LSTMs, or Vision Transformers for anomaly detection, the system is capable of analyzing video sequences to accurately flag potential accidents. Once an incident is detected, it instantly triggers alerts to notify emergency responders, providing crucial details such as incident frames and vehicle tracking data. The project involved collecting and labeling a comprehensive dataset of real and simulated accident videos, training robust detection models, and developing a working prototype that performs live analysis and alerting. This system was evaluated based on key metrics like accuracy, precision, and recall, ensuring reliable performance across varied conditions including different weather and lighting scenarios. Overall, the system aims to reduce response times, save lives, and offer a scalable solution for smart city infrastructure and modern traffic monitoring systems.', tech: ['Python', 'OpenCV', 'Sensor Logic', 'Machine Learning'], link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System' },
-      { img: 'images/project-escape.jpg', title: 'Unity Escape Room 404', desc: 'This project was a collaborative effort to design a 2D escape room game using Unity and C#. I was responsible for level scripting, puzzle logic, UI animations, and QR code deployment for easy mobile access. The game involves progressing through multiple rooms by solving puzzles, collecting items, and escaping within a time limit. With immersive visuals, touch-based controls, and sound integration, the game was tailored for Android devices and optimized for performance. It served as a creative exercise in gameplay mechanics, object interaction scripting, and cross-device deployment. The project taught me valuable game development practices and enhanced my understanding of Unity’s event system and animation workflows.', tech: ['Unity', 'C#', 'Game Design'], link: 'https://github.com/skgtheking/383--404' },
-      { img: 'images/project-barterdb.jpg', title: 'BarterDB Trading Platform', desc: 'BarterDB is a PHP-based full-stack web application designed to enable item exchange between users based on a flexible equivalence system. I architected the MySQL database, implemented the backend logic for posting, viewing, and accepting offers, and built secure user and admin dashboards. The admin panel includes capabilities like user suspension, equivalence value assignment, and full transaction logs. A key security feature is the use of a 16-digit hash token for anonymous trade initiation. I also introduced enhancements like contact forms, barter history, and system scalability for future multi-user exchanges. Tools used include Lucidchart for schema design, Power BI for admin analytics, and GitHub for version control. The project demonstrates my skills in backend security, frontend usability, and scalable architecture.', tech: ['HTML', 'PHP', 'MySQL', 'XAMPP'], link: 'https://nikki44k.github.io/BarterDB/' },
-      { img: 'images/project-videographer.jpg', title: 'Athletic Videographer', desc: 'Recorded and edited football game/practice footage for strategic analysis.', tech: ['Cameras', 'DV Sport'], link: '#' },
-      { img: 'images/cert-ethical.jpg', title: 'Network Ethical Hacking', desc: 'Course completion on ethical hacking tools and basics.', tech: ['Network Scanning','MAC Spoofing','Wi-Fi Hacking'], link: '#' },
-      { img: 'images/cert-cyber.png', title: 'Introduction to Cybersecurity', desc: 'Cisco introduction course on cyber threats and safe practices.', tech: ['Threat Detection','Privacy And Data Confidentiality','Network Vulnerabilities'], link: 'https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile' },
-      { img: 'images/cert-python.png', title: 'Python Essentials 1', desc: 'Cisco course covering basics of Python programming.', tech: ['Algorithmic Thinking', 'Design Develop and Debug Scripts','Basic Python Programming'], link: 'https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile' }
-    ];
+  {
+    img: 'images/project-weather.jpg',
+    title: 'Full Stack Weather App',
+    desc: 'Developed as part of a full-stack assessment, this weather app integrates OpenWeather API, YouTube API, and Google Maps to deliver an interactive and visually engaging user experience. I implemented features like dynamic city search with autocomplete using GeoDB API, responsive cards for weather data, and dark mode toggle. The app displays 5-day forecasts and today’s hourly updates, with real-time weather icons and dynamic YouTube travel videos for searched cities. It also supports CRUD operations via a Node.js backend with MongoDB Atlas and allows exporting weather records in JSON, CSV, and PDF formats. This project showcases my ability to combine multiple APIs, design scalable backend endpoints, and build an aesthetically polished frontend deployed via Vercel.',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB', 'OpenWeather API'],
+    link: 'https://github.com/Nightyelf2403/wa'
+  },
+  {
+    img: 'images/project-adversarial.jpg',
+    title: 'Adversarial Robustness',
+    desc: 'In this machine learning project, I analyzed the robustness of pretrained deep learning models like VGG16 and ResNet50 against various adversarial attacks including EAD, Square, Zoo and Feature Squeezing. I fine-tuned models on Bean Leaf dataset and generated adversarial samples to evaluate performance drop and perturbation tolerance. I also implemented lightweight defense mechanisms like Feature Squeezing to study mitigation effects. Performance metrics such as accuracy degradation, perturbation size, and model recovery were visualized through graphs and confusion matrices. This project provided deep insights into AI security and model vulnerability, preparing me for roles in adversarial ML research or secure AI deployment.',
+    tech: ['Python', 'PyTorch', 'CleverHans', 'OpenCV'],
+    link: 'https://github.com/Nightyelf2403/adv-robustness-img'
+  },
+  {
+    img: 'images/project-accident.jpg',
+    title: 'AI-Based Accident Detection',
+    desc: 'The AI-Based Accident Detection and Emergency Response System is an innovative solution designed to enhance road safety by using artificial intelligence to monitor and detect traffic accidents in real time. This project utilizes live video feeds from traffic cameras and dashcams to automatically identify collision events, vehicle breakdowns, or unusual roadside behavior. By employing deep learning models such as YOLO and Faster R-CNN for vehicle tracking and CNNs, LSTMs, or Vision Transformers for anomaly detection, the system is capable of analyzing video sequences to accurately flag potential accidents. Once an incident is detected, it instantly triggers alerts to notify emergency responders, providing crucial details such as incident frames and vehicle tracking data. The project involved collecting and labeling a comprehensive dataset of real and simulated accident videos, training robust detection models, and developing a working prototype that performs live analysis and alerting. This system was evaluated based on key metrics like accuracy, precision, and recall, ensuring reliable performance across varied conditions including different weather and lighting scenarios. Overall, the system aims to reduce response times, save lives, and offer a scalable solution for smart city infrastructure and modern traffic monitoring systems.',
+    tech: ['Python', 'OpenCV', 'Sensor Logic', 'Machine Learning'],
+    link: 'https://github.com/Nightyelf2403/AI-Based_Accident-Detection_Emergency_Response_System'
+  },
+  {
+    img: 'images/project-escape.jpg',
+    title: 'Unity Escape Room 404',
+    desc: 'This project was a collaborative effort to design a 2D escape room game using Unity and C#. I was responsible for level scripting, puzzle logic, UI animations, and QR code deployment for easy mobile access. The game involves progressing through multiple rooms by solving puzzles, collecting items, and escaping within a time limit. With immersive visuals, touch-based controls, and sound integration, the game was tailored for Android devices and optimized for performance. It served as a creative exercise in gameplay mechanics, object interaction scripting, and cross-device deployment. The project taught me valuable game development practices and enhanced my understanding of Unity’s event system and animation workflows.',
+    tech: ['Unity', 'C#', 'Game Design'],
+    link: 'https://github.com/skgtheking/383--404'
+  },
+  {
+    img: 'images/project-barterdb.jpg',
+    title: 'BarterDB Trading Platform',
+    desc: 'BarterDB is a PHP-based full-stack web application designed to enable item exchange between users based on a flexible equivalence system. I architected the MySQL database, implemented the backend logic for posting, viewing, and accepting offers, and built secure user and admin dashboards. The admin panel includes capabilities like user suspension, equivalence value assignment, and full transaction logs. A key security feature is the use of a 16-digit hash token for anonymous trade initiation. I also introduced enhancements like contact forms, barter history, and system scalability for future multi-user exchanges. Tools used include Lucidchart for schema design, Power BI for admin analytics, and GitHub for version control. The project demonstrates my skills in backend security, frontend usability, and scalable architecture.',
+    tech: ['HTML', 'PHP', 'MySQL', 'XAMPP'],
+    link: 'https://nikki44k.github.io/BarterDB/'
+  },
+  {
+    img: 'images/project-videographer.jpg',
+    title: 'Athletic Videographer',
+    desc: 'Recorded and edited football game/practice footage for strategic analysis.',
+    tech: ['Cameras', 'DV Sport'],
+    link: '#'
+  },
+  {
+    img: 'images/cert-ethical.jpg',
+    title: 'Network Ethical Hacking',
+    desc: 'Course completion on ethical hacking tools and basics.',
+    tech: ['Network Scanning','MAC Spoofing','Wi-Fi Hacking'],
+    link: '#'
+  },
+  {
+    img: 'images/cert-cyber.png',
+    title: 'Introduction to Cybersecurity',
+    desc: 'Cisco introduction course on cyber threats and safe practices.',
+    tech: ['Threat Detection','Privacy And Data Confidentiality','Network Vulnerabilities'],
+    link: 'https://www.credly.com/badges/2977ce48-b921-4afe-99f2-925ccac9ad95/linked_in_profile'
+  },
+  {
+    img: 'images/cert-python.png',
+    title: 'Python Essentials 1',
+    desc: 'Cisco course covering basics of Python programming.',
+    tech: ['Algorithmic Thinking', 'Design Develop and Debug Scripts','Basic Python Programming'],
+    link: 'https://www.credly.com/badges/9ae8f1d3-9b3c-4c8e-ae34-ae2dae72145b/linked_in_profile'
+  },
+  {
+    img: 'images/cert-React Js.png',
+    title: 'React JS Certification',
+    desc: 'Completed GeeksforGeeks ReactJS course, mastering front-end SPA development using JSX, Hooks, and Redux. Built responsive UIs, integrated REST APIs, and implemented Redux-Thunk for async operations.',
+    tech: ['JSX (JavaScript XML)', 'API Integration', 'Redux & Redux-Thunk', 'Advanced JavaScript (ES6+)', 'SPAs', 'Hooks', 'DevTools'],
+    link: 'https://media.geeksforgeeks.org/courses/certificates/94ff129ccc05253fcc4a57b032585f5e.pdf'
+  }
+];
 
     let currentIndex = 0;
 
